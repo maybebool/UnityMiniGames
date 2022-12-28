@@ -11,7 +11,7 @@ namespace FlappyBird.Scripts
 
         private void Start()
         {
-            leftEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x - 1;
+            leftEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x - 12;
         }
 
 
