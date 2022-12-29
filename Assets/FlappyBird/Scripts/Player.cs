@@ -12,6 +12,8 @@ namespace FlappyBird.Scripts
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] sprites;
         private int spriteIndex;
+        [SerializeField] private GameObject manager;
+        
 
         private void Awake()
         {
@@ -52,6 +54,19 @@ namespace FlappyBird.Scripts
             }
 
             spriteRenderer.sprite = sprites[spriteIndex];
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Obsticle"))   
+            {
+                //FindObjectOfType<GameManager>().GameOver();
+                manager.GetComponent<GameManager>().GameOver();
+                
+            }else if (col.gameObject.CompareTag("Scoring"))
+            {
+                manager.GetComponent<GameManager>().IncreaseScore();
+            }
         }
     }
 }

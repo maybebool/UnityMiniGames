@@ -6,14 +6,15 @@ namespace FlappyBird.Scripts
     {
         private int _score;
 
-        private void GameOver()
+        public void GameOver()
         {
             Debug.Log("game over");
         }
 
-        private void IncreaseScore()
+        public void IncreaseScore()
         {
             _score++;
+            Debug.Log($"Score" + _score);
         }
     }
 }
