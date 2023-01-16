@@ -15,5 +15,10 @@ namespace DoodleJump.Scripts
         {
         
         }
+
+        private void Jumper()
+        {
+            
+        }
     }
 }
