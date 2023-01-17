@@ -4,6 +4,10 @@ namespace DoodleJump.Scripts
 {
     public class DoodleJumpTest : MonoBehaviour
     {
+
+        private Vector3 leftEdge;
+
+        private float speed;
         // Start is called before the first frame update
         void Start()
         {
@@ -20,5 +24,14 @@ namespace DoodleJump.Scripts
         {
             
         }
+
+        private void VectorLeft()
+        {
+            leftEdge = Vector3.left * speed * Time.deltaTime;
+
+        }
+
+
+
     }
 }
