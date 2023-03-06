@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4105559752691278333}
+  - component: {fileID: 3154264725700473171}
   - component: {fileID: 8649020541519846581}
   - component: {fileID: 6868110592628633135}
+  - component: {fileID: 1280390331}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -26,13 +28,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955857725415572172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34747374, y: -0.44145775, z: 0.630886}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3154264725700473171
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955857725415572172}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8649020541519846581
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e3239ea557b0a6a4a9571e29aa3f8501, type: 2}
+  - {fileID: 2100000, guid: f158fa9911010f646a471942d8bf1e18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,4 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572786e62dd05aa41bcb32d6b3bb9026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.05
+  gameName: 2
+  animationSpeed: 0.01
+--- !u!114 &1280390331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955857725415572172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2ed62d1e76cbb4e94c2d82dab4df2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  self: {fileID: 4105559752691278333}
