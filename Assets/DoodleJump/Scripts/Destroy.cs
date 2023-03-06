@@ -10,20 +10,34 @@ namespace DoodleJump.Scripts {
 		private GameObject myPlat;
 
 
-		// Start is called before the first frame update
-		void Start() {
-		}
-
-		// Update is called once per frame
-		void Update() {
-		}
-
 		private void OnTriggerEnter2D(Collider2D col) {
-			myPlat = Instantiate(Random.Range(1, 15) > 1 ? platform : spring, 
-				new Vector2(Random.Range(-5.5f, 5.5f), 
-					player.transform.position.y + (2 + Random.Range(0.5f, 1f))), Quaternion.identity);
 
-			Destroy(col.gameObject);
+
+			if (col.gameObject.name.StartsWith("Platform")) {
+				if (Random.Range(1, 10) == 1) {
+					
+					Destroy(col.gameObject);
+					Instantiate(spring,
+						new Vector2(Random.Range(-5.5f, 5.5f), player.transform.position.y + (2 + Random.Range(0.2f, 1f))),
+						Quaternion.identity);
+				}
+				else {
+					col.gameObject.gameObject.transform.position = new Vector2(Random.Range(-5.5f, 5.5f),
+						player.transform.position.y + (2 + Random.Range(0.2f, 1f)));
+				}
+			}
+			else if (col.gameObject.name.StartsWith("Spring")) {
+				if (Random.Range(1, 10) == 1) {
+					col.gameObject.gameObject.transform.position = new Vector2(Random.Range(-5.5f, 5.5f),
+						player.transform.position.y + (2 + Random.Range(0.2f, 1f)));
+				}
+				else {
+					Destroy(col.gameObject);
+					Instantiate(platform,
+						new Vector2(Random.Range(-5.5f, 5.5f), player.transform.position.y + (2 + Random.Range(0.2f, 1f))),
+						Quaternion.identity);
+				}
+			}
 		}
 	}
 }
