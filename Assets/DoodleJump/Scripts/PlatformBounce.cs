@@ -22,7 +22,7 @@ namespace DoodleJump.Scripts
         {
             if (col.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0)
             {
-                col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 600f);
+                col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 600f);
             }
         }
     }
