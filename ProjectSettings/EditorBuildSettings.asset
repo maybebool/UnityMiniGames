@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/DoodleJumpMenu.unity
+    guid: 3d8cdda311c383542a953a31f27c5c17
+  - enabled: 1
+    path: Assets/Scenes/DoodleJump.unity
+    guid: 129f0bab99c400f48825685d79d61f83
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

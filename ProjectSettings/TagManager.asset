@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obsticle
   - Scoring
+  - Background
+  - Spring
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Background
   - 
   - 
   - 
