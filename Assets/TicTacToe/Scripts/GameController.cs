@@ -44,11 +44,15 @@ namespace TicTacToe.Scripts
 
             if (hasTurn == 0)
             {
-                hasTurn = 1;    
+                hasTurn = 1;
+                turnIcons[0].SetActive(false);
+                turnIcons[1].SetActive(true);
             }
             else
             {
                 hasTurn = 0;
+                turnIcons[0].SetActive(true);
+                turnIcons[1].SetActive(false);
             }
         }
     }
