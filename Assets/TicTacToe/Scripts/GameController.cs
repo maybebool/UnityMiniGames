@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace TicTacToe.Scripts
@@ -28,6 +29,26 @@ namespace TicTacToe.Scripts
                 spaces[i].interactable = true;
                 spaces[i].GetComponent<Image>().sprite = null;
 
+            }
+        }
+
+        private void Update()
+        {
+            
+        }
+
+        public void Buttons(int whichNumber)
+        {
+            spaces[whichNumber].image.sprite = playIcons[hasTurn];
+            spaces[whichNumber].interactable = false;
+
+            if (hasTurn == 0)
+            {
+                hasTurn = 1;    
+            }
+            else
+            {
+                hasTurn = 0;
             }
         }
     }
