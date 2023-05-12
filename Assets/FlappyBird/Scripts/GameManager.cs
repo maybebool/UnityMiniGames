@@ -23,14 +23,12 @@ namespace FlappyBird.Scripts
             playingButton.onClick.RemoveListener(Play);
         }
 
-        private void Awake()
-        {
+        private void Awake() {
             Application.targetFrameRate = 60;
             Pause();
         }
 
-        public void Play()
-        {
+        public void Play() {
             _score = 0;
             scoreText.text = _score.ToString();
             playButton.SetActive(false);
@@ -46,23 +44,19 @@ namespace FlappyBird.Scripts
 
         }
 
-        public void Pause()
-        {
+        public void Pause() {
             Time.timeScale = 0f;
             player.enabled = false;
         }
 
-        public void GameOver()
-        {
+        public void GameOver() {
             gameOver.SetActive(true);
             playButton.SetActive(true);
             Pause();
             Debug.Log("game over");
         }
 
-        public void IncreaseScore()
-        {
-            
+        public void IncreaseScore() {
             _score++;
             scoreText.text = _score.ToString();
             Debug.Log($"Score" + _score);
