@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Board : MonoBehaviour
+namespace Tetris.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Board : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public TetrominoData[] tetrominos;
     }
 }

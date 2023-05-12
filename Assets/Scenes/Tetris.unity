@@ -561,6 +561,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb8ef948e448324eaf54a5f03f9d612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tetrominos:
+  - Tetromino: 0
+    Tile: {fileID: 11400000, guid: b350b46612f12944fa42f5fb8327d313, type: 2}
+  - Tetromino: 1
+    Tile: {fileID: 11400000, guid: b60ed98349fc1e2488d16aff4f4ef26e, type: 2}
+  - Tetromino: 2
+    Tile: {fileID: 11400000, guid: 65bf1bb515254b2438ecaf384a4a6d14, type: 2}
+  - Tetromino: 3
+    Tile: {fileID: 11400000, guid: dcc83e1a88efee743805be3d1fd95dd9, type: 2}
+  - Tetromino: 4
+    Tile: {fileID: 11400000, guid: c2c866cf9433e3a42b03b8db32079d4c, type: 2}
+  - Tetromino: 5
+    Tile: {fileID: 11400000, guid: a959609521ecbc5439dedda549b1c185, type: 2}
+  - Tetromino: 6
+    Tile: {fileID: 11400000, guid: dea4166b4a86279408a5f512f6d36467, type: 2}
 --- !u!156049354 &1469282866
 Grid:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ namespace Tetris.Scripts
         Z
     }
 
+    [System.Serializable]
     public struct TetrominoData
     {
         public Tetromino Tetromino;
