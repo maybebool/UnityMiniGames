@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -20,5 +21,11 @@ namespace Tetris.Scripts
     {
         public Tetromino Tetromino;
         public Tile Tile;
+        public Vector2Int[] Cells { get; private set; }
+
+        public void Initialize()
+        {
+            this.Cells = Data.Cells[this.Tetromino];
+        }
     }
 }
