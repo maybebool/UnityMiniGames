@@ -15,13 +15,11 @@ namespace FlappyBird.Scripts
         
         private int _score;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             playingButton.onClick.AddListener(Play);
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             playingButton.onClick.RemoveListener(Play);
         }
 
