@@ -564,19 +564,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominos:
   - Tetromino: 0
-    Tile: {fileID: 11400000, guid: b350b46612f12944fa42f5fb8327d313, type: 2}
+    Tile: {fileID: 11400000, guid: de613833917a2594a974a4072980be80, type: 2}
   - Tetromino: 1
-    Tile: {fileID: 11400000, guid: b60ed98349fc1e2488d16aff4f4ef26e, type: 2}
+    Tile: {fileID: 11400000, guid: 96fe38e57b3b05443819794e9f5c41c3, type: 2}
   - Tetromino: 2
-    Tile: {fileID: 11400000, guid: 65bf1bb515254b2438ecaf384a4a6d14, type: 2}
+    Tile: {fileID: 11400000, guid: 3811362ba11fc1f4ba374432e2b47aed, type: 2}
   - Tetromino: 3
-    Tile: {fileID: 11400000, guid: dcc83e1a88efee743805be3d1fd95dd9, type: 2}
+    Tile: {fileID: 11400000, guid: 809a52e81f53cfb4484335884ec58b94, type: 2}
   - Tetromino: 4
-    Tile: {fileID: 11400000, guid: c2c866cf9433e3a42b03b8db32079d4c, type: 2}
+    Tile: {fileID: 11400000, guid: 23017344f4481c4498a50bdc14b07794, type: 2}
   - Tetromino: 5
-    Tile: {fileID: 11400000, guid: a959609521ecbc5439dedda549b1c185, type: 2}
+    Tile: {fileID: 11400000, guid: 0f15e4d6afbcc20488230b3e83d2d8f4, type: 2}
   - Tetromino: 6
-    Tile: {fileID: 11400000, guid: dea4166b4a86279408a5f512f6d36467, type: 2}
+    Tile: {fileID: 11400000, guid: 84e67bac86bdb0442aa8113946c68632, type: 2}
   spawnPos: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1469282866
 Grid:

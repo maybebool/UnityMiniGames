@@ -23,7 +23,7 @@ namespace Tetris.Scripts
 
         private void Start()
         {
-            
+            SpawnPiece();
         }
 
         public void SpawnPiece() {
