@@ -79,8 +79,22 @@ namespace Tetris.Scripts
             }
         }
 
-        private void Rotate(int direction) {
-            RotationIndex = Wrap(this.RotationIndex + direction, 0, 4);
+        private void Rotate(int direction)
+        {
+            var originalRotation = RotationIndex;
+            RotationIndex = Wrap(RotationIndex + direction, 0, 4);
+            ApplyRotationMatrix(direction);
+            
+
+            if (!TestWallKicks(RotationIndex, direction))
+            {
+                RotationIndex = originalRotation;
+                ApplyRotationMatrix(-direction);
+            }
+        }
+
+        private void ApplyRotationMatrix(int direction)
+        {
             for (int i = 0; i < Cells.Length; i++)
             {
                 Vector3 cell = Cells[i];
@@ -103,7 +117,6 @@ namespace Tetris.Scripts
 
                 Cells[i] = new Vector3Int(x, y, 0);
 
-
             }
         }
 
@@ -115,6 +128,33 @@ namespace Tetris.Scripts
             else {
                 return min + (input - min) % (max - min);
             }
+        }
+
+        private bool TestWallKicks(int rotationIndex, int rotDir)
+        {
+            int wallKickIndex = GetWallKickIndex(rotationIndex, rotDir);
+            for (int i = 0; i < Data.wallKicks.GetLength(1); i++)
+            {
+                var translation = Data.wallKicks[wallKickIndex, i];
+
+                if (Move(translation)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private int GetWallKickIndex(int rotationIndex, int rotDir)
+        {
+            int wallKickIndex = rotationIndex * 2;
+
+            if (rotationIndex < 0)
+            {
+                wallKickIndex--;
+            }
+
+            return Wrap(wallKickIndex, 0, Data.wallKicks.GetLength(0));
         }
     }
 }
