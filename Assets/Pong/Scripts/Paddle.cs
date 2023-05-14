@@ -6,6 +6,7 @@ namespace Pong.Scripts
     public class Paddle : MonoBehaviour
     {
         protected Rigidbody2D Rigidbody;
+        protected float speed = 10;
 
 
         private void Awake()
