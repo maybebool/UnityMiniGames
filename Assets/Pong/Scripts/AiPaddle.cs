@@ -2,18 +2,8 @@ using UnityEngine;
 
 namespace Pong.Scripts
 {
-    public class AiPaddle : MonoBehaviour
+    public class AiPaddle : Paddle
     {
-        // Start is called before the first frame update
-        void Start()
-        {
         
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }
