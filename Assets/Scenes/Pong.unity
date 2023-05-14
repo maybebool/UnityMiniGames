@@ -816,10 +816,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3717506148297798469, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
+    - target: {fileID: 3717506148297798468, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: a7a4bd3661e348e49a06952aa3f93c17, type: 2}
+    - target: {fileID: 3717506148297798469, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3717506148297798470, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
       propertyPath: m_Name
       value: Ball
