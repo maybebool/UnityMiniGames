@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
 
-namespace Pong.Scripts
-{
-    public class PongGameManager : MonoBehaviour
-    {
+namespace Pong.Scripts {
+    
+    public class PongGameManager : MonoBehaviour {
+        
         public Ball ball;
         private int _playerScore;
         private int _aiScore;
@@ -12,19 +12,18 @@ namespace Pong.Scripts
         public TextMeshPro aiScoreText;
         
 
-        public void PlayerScore()
-        {
+        public void PlayerScore() {
             _playerScore++;
             playerScoreText.text = _playerScore.ToString();
             ball.ResetPosition();
+            ball.AddStartForce();
         }
 
-        public void AiScore()
-        {
+        public void AiScore() {
             _aiScore++;
             aiScoreText.text = _aiScore.ToString();
             ball.ResetPosition();
+            ball.AddStartForce();
         }
-        
     }
 }

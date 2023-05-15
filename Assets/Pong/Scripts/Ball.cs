@@ -19,7 +19,7 @@ namespace Pong.Scripts
             AddStartForce();
         }
 
-        private void AddStartForce()
+        public void AddStartForce()
         {
             var x = Random.value < 0.5f ? -1.0f : 1.0f;
             var y = Random.value < 0.5f ? Random.Range(-1.0f, -0.5f) : Random.Range(0.5f, 1.0f);
