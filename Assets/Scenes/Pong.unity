@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 199344472}
   - component: {fileID: 199344471}
   - component: {fileID: 199344473}
+  - component: {fileID: 199344474}
   m_Layer: 0
   m_Name: RightWall
   m_TagString: Untagged
@@ -195,6 +196,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceStrength: 5
+--- !u!114 &199344474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199344470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48230a837bd7e5d4ba2ab5eb0e73701d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108178588}
+        m_TargetAssemblyTypeName: Pong.Scripts.PongGameManager, Assembly-CSharp
+        m_MethodName: PlayerScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &506129119
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +531,7 @@ GameObject:
   - component: {fileID: 919141096}
   - component: {fileID: 919141095}
   - component: {fileID: 919141097}
+  - component: {fileID: 919141098}
   m_Layer: 0
   m_Name: LeftWall
   m_TagString: Untagged
@@ -564,6 +593,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceStrength: 5
+--- !u!114 &919141098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919141094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48230a837bd7e5d4ba2ab5eb0e73701d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108178588}
+        m_TargetAssemblyTypeName: Pong.Scripts.PongGameManager, Assembly-CSharp
+        m_MethodName: AiScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1582091861
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +803,7 @@ GameObject:
   - component: {fileID: 2108178589}
   - component: {fileID: 2108178588}
   m_Layer: 0
-  m_Name: Gamemanager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
