@@ -24,8 +24,10 @@ namespace Pong.Scripts
             var y = Random.value < 0.5f ? Random.Range(-1.0f, -0.5f) : Random.Range(0.5f, 1.0f);
             var direction = new Vector2(x, y);
             _rigidbody.AddForce(direction * speed);
-            
+        }
 
+        public void AddForce(Vector2 force) {
+            _rigidbody.AddForce(force);
         }
     }
 }

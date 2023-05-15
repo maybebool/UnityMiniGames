@@ -7,10 +7,11 @@ namespace Pong.Scripts
     public class AiPaddle : Paddle
     {
         public Rigidbody2D ball;
+        public float threshold = 2;
         
         private void FixedUpdate()
         {
-            if (ball.position.x > 0){
+            if (ball.velocity.x > 0 + threshold){
 
                 if (ball.position.y > transform.position.y)
                 {
@@ -27,9 +28,6 @@ namespace Pong.Scripts
                     Rigidbody.AddForce(Vector2.up * speed);
                 }
             }
-
-            Debug.Log(ball.position);
-
         }
     }
 }
