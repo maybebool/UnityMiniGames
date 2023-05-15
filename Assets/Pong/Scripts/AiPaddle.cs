@@ -10,7 +10,7 @@ namespace Pong.Scripts
         
         private void FixedUpdate()
         {
-            if (ball.velocity.x > 0){
+            if (ball.position.x > 0){
 
                 if (ball.position.y > transform.position.y)
                 {
@@ -21,9 +21,15 @@ namespace Pong.Scripts
             }
             else
             {
-                
+                if (transform.position.y > 0.0f) {
+                    Rigidbody.AddForce(Vector2.down * speed);
+                }else if (transform.position.y < 0.0f) {
+                    Rigidbody.AddForce(Vector2.up * speed);
+                }
             }
-            
+
+            Debug.Log(ball.position);
+
         }
     }
 }

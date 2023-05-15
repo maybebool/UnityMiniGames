@@ -597,7 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f912f1377fa6241a361781b44cdbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!1 &1790776680
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46aa78bf299227440bd3404ded38c5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
+  ball: {fileID: 2044112312}
 --- !u!1 &2044112305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3717506148297798470, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
@@ -718,6 +717,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+--- !u!50 &2044112312 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3717506148297798468, guid: 6647366f19a44204eae1b4d57fa158a4, type: 3}
+  m_PrefabInstance: {fileID: 3717506147872694007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2496537436337818687
 PrefabInstance:
   m_ObjectHideFlags: 0

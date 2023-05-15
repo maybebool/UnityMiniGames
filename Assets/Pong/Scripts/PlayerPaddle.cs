@@ -6,7 +6,6 @@ namespace Pong.Scripts
     public class PlayerPaddle : Paddle
     {
         private Vector2 _direction;
-        public float speed = 10;
 
         private void Update()
         {
