@@ -1064,6 +1064,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceStrength: 5
+--- !u!114 &1589363857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589363857, guid: b7ff93a74cbc3d94888c4b9d69ea18a9, type: 3}
+  m_PrefabInstance: {fileID: 2496537436337818687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f912f1377fa6241a361781b44cdbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790776680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1159,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1839184315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1839184315, guid: 30456bfe2823b204fb8b047816ce8e0f, type: 3}
+  m_PrefabInstance: {fileID: 3946266043020635348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46aa78bf299227440bd3404ded38c5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982503785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,8 +1284,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 2044112310}
-  playerScoreText: {fileID: 0}
-  aiScoreText: {fileID: 0}
+  playerPaddle: {fileID: 1589363857}
+  aiPaddle: {fileID: 1839184315}
+  playerScoreText: {fileID: 139280151}
+  aiScoreText: {fileID: 260043080}
 --- !u!4 &2108178589
 Transform:
   m_ObjectHideFlags: 0
