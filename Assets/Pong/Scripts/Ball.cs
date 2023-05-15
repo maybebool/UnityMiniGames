@@ -16,6 +16,7 @@ namespace Pong.Scripts
         private void Start()
         {
             ResetPosition();
+            AddStartForce();
         }
 
         private void AddStartForce()
@@ -34,7 +35,6 @@ namespace Pong.Scripts
         {
             _rigidbody.position = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;
-            AddStartForce();
         }
     }
 }
