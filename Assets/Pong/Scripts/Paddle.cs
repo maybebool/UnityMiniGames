@@ -13,5 +13,11 @@ namespace Pong.Scripts
         {
             Rigidbody = GetComponent<Rigidbody2D>();
         }
+
+        public void ResetPosition()
+        {
+            Rigidbody.position = new Vector2(Rigidbody.position.x, 0f);
+            Rigidbody.velocity = Vector2.zero;
+        }
     }
 }
