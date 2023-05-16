@@ -22,10 +22,12 @@ namespace Tetris.Scripts
         public Tetromino Tetromino;
         public Tile Tile;
         public Vector2Int[] Cells { get; private set; }
+        public Vector2Int[,] wallKicks { get; private set; }
 
         public void Initialize()
         {
-            this.Cells = Data.Cells[this.Tetromino];
+            Cells = Data.Cells[Tetromino];
+            wallKicks = Data.WallKicks[Tetromino];
         }
     }
 }
