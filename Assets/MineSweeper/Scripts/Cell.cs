@@ -2,8 +2,21 @@ using UnityEngine;
 
 namespace MineSweeper.Scripts
 {
-    public class Cell : MonoBehaviour
+    public struct Cell
     {
-    
+        public enum Type
+        {
+            Empty,
+            Mine,
+            Number
+        }
+
+        public Type type;
+        public Vector3Int position;
+        public int number;
+        public bool revealed;
+        public bool flagged;
+        public bool exploded;
+
     }
 }
