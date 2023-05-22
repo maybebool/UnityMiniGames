@@ -48,7 +48,7 @@ namespace Tetris.Scripts
             {
                 GameOver();
             }
-            Set(this.Piece);
+            Set(Piece);
         }
 
         private void GameOver()
