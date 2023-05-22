@@ -40,7 +40,20 @@ namespace Tetris.Scripts
             var random = Random.Range(0, this.tetrominos.Length);
             var data = this.tetrominos[random];
             this.Piece.Initialize(this, spawnPos, data);
+            if (IsValidPosition(Piece,spawnPos))
+            {
+                Set(Piece);
+            }
+            else
+            {
+                GameOver();
+            }
             Set(this.Piece);
+        }
+
+        private void GameOver()
+        {
+            Tilemap.ClearAllTiles();
         }
 
 
