@@ -12,10 +12,18 @@ namespace Tetris.Scripts
         
         public int RotationIndex { get; private set; }
 
+        public float stepDelay = 1f;
+        public float lockDelay = .5f;
+        private float _stepTime;
+        private float _lockTime;
+        
+
 
         private void Update() {
             
             Board.Clear(this);
+
+            _lockTime += Time.deltaTime;
 
             if (Input.GetKeyDown(KeyCode.Q)) {
                 Rotate(-1);
@@ -38,15 +46,38 @@ namespace Tetris.Scripts
             {
                 HardDrop();
             }
+
+            if (Time.time >= _stepTime)
+            {
+                Step();
+            }
             
             Board.Set(this);
         }
+
+        private void Step()
+        {
+            _stepTime = Time.time + stepDelay;
+            Move(Vector2Int.down);
+            if (_lockTime >= lockDelay)
+            {
+                Lock();
+            }
+        }
+
+        private void Lock()
+        {
+            Board.Set(this);
+            Board.SpawnPiece();
+        }
+        
 
         private void HardDrop()
         {
             while (Move(Vector2Int.down)) {
                 continue;
             }
+            Lock();
         }
 
         private bool Move(Vector2Int translation)
@@ -58,6 +89,7 @@ namespace Tetris.Scripts
             var valid = Board.IsValidPosition(this, newPos);
             if (valid) {
                 Position = newPos;
+                _lockTime = 0f;
             }
             return valid;
         }
@@ -69,6 +101,8 @@ namespace Tetris.Scripts
             Position = position;
             Data = data;
             RotationIndex = 0;
+            _stepTime = Time.time + stepDelay;
+            _lockTime = 0f;
 
             if (Cells == null) {
                 Cells = new Vector3Int[data.Cells.Length];
