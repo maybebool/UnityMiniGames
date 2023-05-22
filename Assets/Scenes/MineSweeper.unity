@@ -183,6 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 16
   height: 16
+  mineCount: 32
+  _camera: {fileID: 445149823}
 --- !u!1 &445149821
 GameObject:
   m_ObjectHideFlags: 0
