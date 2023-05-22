@@ -8,13 +8,14 @@ namespace MineSweeper.Scripts
         public int width = 16;
         public int height = 16;
 
-        private MS_Board board;
-        private Cell[,] state;
+        private MS_Board _board;
+        private Cell[,] _state;
+        private Camera _camera;
 
         private void Awake()
         {
-            board = GetComponentInChildren<MS_Board>();
-            
+            _board = GetComponentInChildren<MS_Board>();
+            _camera = Camera.main;
         }
 
         private void Start()
@@ -24,9 +25,10 @@ namespace MineSweeper.Scripts
 
         private void NewGame()
         {
-            state = new Cell[width, height];
+            _state = new Cell[width, height];
             GenerateCells();
-            board.Draw(state);
+            _camera.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+            _board.Draw(_state);
         }
 
         private void GenerateCells()
@@ -38,7 +40,7 @@ namespace MineSweeper.Scripts
                     var cell = new Cell();
                     cell.position = new Vector3Int(x, y, 0);
                     cell.type = Cell.Type.Empty;
-                    state[x, y] = cell;
+                    _state[x, y] = cell;
                 }
             }
         }
