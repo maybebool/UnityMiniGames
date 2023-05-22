@@ -26,6 +26,11 @@ namespace MineSweeper.Scripts
             NewGame();
         }
 
+        private void Update()
+        {
+            
+        }
+
         private void NewGame() {
             _state = new Cell[width, height];
             GenerateCells();
