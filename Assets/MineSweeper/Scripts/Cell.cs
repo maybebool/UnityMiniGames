@@ -6,6 +6,7 @@ namespace MineSweeper.Scripts
     {
         public enum Type
         {
+            Invalid,
             Empty,
             Mine,
             Number

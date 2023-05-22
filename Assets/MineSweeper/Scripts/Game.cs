@@ -28,7 +28,41 @@ namespace MineSweeper.Scripts
 
         private void Update()
         {
-            
+            if (Input.GetMouseButtonDown(1))
+            {
+                Flag();
+            }
+        }
+
+        private void Flag()
+        {
+            var worldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            var cellPosition = _board.Tilemap.WorldToCell(worldPosition);
+
+            var cell = GetCell(cellPosition.x, cellPosition.y);
+            if (cell.type == Cell.Type.Invalid || cell.revealed)
+            {
+                return;
+            }
+
+            cell.flagged = !cell.flagged;
+            _state[cellPosition.x, cellPosition.y] = cell;
+            _board.Draw(_state);
+        }
+
+        private Cell GetCell(int x, int y)
+        {
+            if (IsValid(x,y))
+            {
+                return _state[x, y];
+            }
+
+            return new Cell();
+        }
+
+        private bool IsValid(int x, int y)
+        {
+            return x < 0 || x >= width || y < 0 || y >= height;
         }
 
         private void NewGame() {
@@ -90,7 +124,7 @@ namespace MineSweeper.Scripts
                         cell.type = Cell.Type.Number;
                     }
 
-                    cell.revealed = true;
+                    //cell.revealed = true;
                     _state[x, y] = cell;
                 }
             }
@@ -113,7 +147,7 @@ namespace MineSweeper.Scripts
                         continue;
                     }
 
-                    if (_state[x,y].type == Cell.Type.Mine)
+                    if (GetCell(x,y).type == Cell.Type.Mine)
                     {
                         count++;
                     }
