@@ -68,6 +68,7 @@ namespace Tetris.Scripts
         private void Lock()
         {
             Board.Set(this);
+            Board.ClearLine();
             Board.SpawnPiece();
         }
         
