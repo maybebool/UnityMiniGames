@@ -40,7 +40,20 @@ namespace Tetris.Scripts
             var random = Random.Range(0, this.tetrominos.Length);
             var data = this.tetrominos[random];
             this.Piece.Initialize(this, spawnPos, data);
-            Set(this.Piece);
+            if (IsValidPosition(Piece,spawnPos))
+            {
+                Set(Piece);
+            }
+            else
+            {
+                GameOver();
+            }
+            Set(Piece);
+        }
+
+        private void GameOver()
+        {
+            Tilemap.ClearAllTiles();
         }
 
 
@@ -74,6 +87,57 @@ namespace Tetris.Scripts
                 }
             }
             return true;
+        }
+
+        public void ClearLine()
+        {
+            var bounds = this.Bounds;
+            var row = bounds.yMin;
+            while (row < bounds.yMax)
+            {
+                if (IsLineFull(row))
+                {
+                    LineClear(row);
+                }
+                else
+                {
+                    row++;
+                }
+            }
+        }
+
+        private bool IsLineFull(int row)
+        {
+            var bounds = Bounds;
+            for (int col = bounds.xMin; col < bounds.xMax; col++)
+            {
+                var pos = new Vector3Int(col, row, 0);
+                if (!Tilemap.HasTile(pos))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void LineClear(int row) {
+            var bounds = Bounds;
+            for (int col = bounds.xMin; col < bounds.xMax; col++) {
+                var pos = new Vector3Int(col, row, 0);
+                Tilemap.SetTile(pos,null);
+            }
+
+            while (row < bounds.xMax) {
+                for (int col = bounds.xMin; col < bounds.xMax; col++) {
+                    var pos = new Vector3Int(col, row + 1, 0);
+                    var above = Tilemap.GetTile(pos);
+                    pos = new Vector3Int(col, row, 0);
+                    Tilemap.SetTile(pos,above);
+                }
+
+                row++;
+            }
         }
     }
 }
