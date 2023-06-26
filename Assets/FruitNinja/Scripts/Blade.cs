@@ -38,7 +38,7 @@ namespace FruitNinja.Scripts {
         private void StartSlicing() {
             var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = 0f;
-            Direction = newPos - transform.position;
+            transform.position = newPos;
             
             sclicing = true;
             bladeCollider.enabled = true;
