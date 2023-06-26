@@ -42,11 +42,16 @@ namespace FruitNinja.Scripts {
             
             sclicing = true;
             bladeCollider.enabled = true;
+
+            trail.enabled = true;
+            trail.Clear();
         }
 
         private void StopSlicing() {
             sclicing = false;
             bladeCollider.enabled = false;
+
+            trail.enabled = false;
         }
 
         private void ContinueSlicing() {
