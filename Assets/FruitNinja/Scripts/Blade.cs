@@ -3,8 +3,18 @@ using UnityEngine;
 
 namespace FruitNinja.Scripts {
     public class Blade : MonoBehaviour {
+
+        private Camera camera;
+        private Collider bladeCollider;
         private bool sclicing;
-        
+        public Vector3 Direction { get; private set; }
+        public float minSliceVelocity = 0.01f;
+
+        private void Awake() {
+            camera = Camera.main;
+            bladeCollider = GetComponent<Collider>();
+        }
+
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
                 StartSlicing();
@@ -15,16 +25,35 @@ namespace FruitNinja.Scripts {
             }
         }
 
+        private void OnEnable() {
+            StopSlicing();
+        }
+
+        private void OnDisable() {
+            StopSlicing();
+        }
+
         private void StartSlicing() {
+            var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            newPos.z = 0f;
+            Direction = newPos - transform.position;
+            
             sclicing = true;
+            bladeCollider.enabled = true;
         }
 
         private void StopSlicing() {
             sclicing = false;
+            bladeCollider.enabled = false;
         }
 
         private void ContinueSlicing() {
-            
+            var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            newPos.z = 0f;
+            Direction = newPos - transform.position;
+            var velocity = Direction.magnitude / Time.deltaTime;
+            bladeCollider.enabled = velocity > minSliceVelocity;
+            transform.position = newPos;
         }
         
     }
