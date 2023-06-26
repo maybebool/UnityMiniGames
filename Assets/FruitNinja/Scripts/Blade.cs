@@ -6,6 +6,7 @@ namespace FruitNinja.Scripts {
 
         private Camera camera;
         private Collider bladeCollider;
+        private TrailRenderer trail;
         private bool sclicing;
         public Vector3 Direction { get; private set; }
         public float minSliceVelocity = 0.01f;
@@ -13,6 +14,7 @@ namespace FruitNinja.Scripts {
         private void Awake() {
             camera = Camera.main;
             bladeCollider = GetComponent<Collider>();
+            trail = GetComponentInChildren<TrailRenderer>();
         }
 
         private void Update() {
