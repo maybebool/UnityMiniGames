@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace FruitNinja.Scripts {
     public class Blade : MonoBehaviour {
-
         private Camera camera;
         private Collider bladeCollider;
         private TrailRenderer trail;
@@ -20,9 +19,11 @@ namespace FruitNinja.Scripts {
         private void Update() {
             if (Input.GetMouseButtonDown(0)) {
                 StartSlicing();
-            }else if (Input.GetMouseButtonUp(0)) {
+            }
+            else if (Input.GetMouseButtonUp(0)) {
                 StopSlicing();
-            }else if (sclicing) {
+            }
+            else if (sclicing) {
                 ContinueSlicing();
             }
         }
@@ -39,7 +40,7 @@ namespace FruitNinja.Scripts {
             var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = 0f;
             transform.position = newPos;
-            
+
             sclicing = true;
             bladeCollider.enabled = true;
 
@@ -62,6 +63,5 @@ namespace FruitNinja.Scripts {
             bladeCollider.enabled = velocity > minSliceVelocity;
             transform.position = newPos;
         }
-        
     }
 }
