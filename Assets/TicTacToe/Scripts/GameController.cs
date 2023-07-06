@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,11 +10,17 @@ namespace TicTacToe.Scripts
     public class GameController : MonoBehaviour
     {
         private int _hasTurn = 1;
+        [SerializeField] private GameObject[] turnIcons;
         [SerializeField] private Sprite[] icons;
         [SerializeField] private Button[] buttons;
         [SerializeField] private TMP_Text winText;
         private int[] _matchFields = new int[9];
 
+
+        private void Start() {
+            turnIcons[0].SetActive(true);
+            turnIcons[1].SetActive(false);
+        }
 
         public void ButtonFieldClick(int number) {
             buttons[number].image.sprite = icons[_hasTurn - 1];
@@ -28,10 +35,14 @@ namespace TicTacToe.Scripts
 
             if (_hasTurn == 1) {
                 _hasTurn = 2;
+                turnIcons[0].SetActive(false);
+                turnIcons[1].SetActive(true);
                 Invoke(nameof(ComputerTurn), 0.5f);
             }
             else {
                 _hasTurn = 1;
+                turnIcons[0].SetActive(true);
+                turnIcons[1].SetActive(false);
             }
         }
 
@@ -113,6 +124,8 @@ namespace TicTacToe.Scripts
 
         public void RestartTheGame() {
             SceneManager.LoadScene("TicTacToe");
+            turnIcons[0].SetActive(true);
+            turnIcons[1].SetActive(false);
         }
     }
 }

@@ -1429,6 +1429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5193a7eec7f2e2245b1fce214b83dce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnIcons:
+  - {fileID: 138164169}
+  - {fileID: 624485167}
   icons:
   - {fileID: 21300000, guid: 9696bd7255abcee42933bfba8b1e3070, type: 3}
   - {fileID: 21300000, guid: 9e54faf1c3c55b24cb3e967951123e90, type: 3}
@@ -1516,7 +1519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
