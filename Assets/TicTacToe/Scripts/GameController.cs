@@ -112,7 +112,7 @@ namespace TicTacToe.Scripts
         }
 
         public void RestartTheGame() {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("TicTacToe");
         }
     }
 }
