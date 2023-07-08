@@ -15,7 +15,7 @@ namespace Breakout.Scripts {
             
                 for (int y = 0; y < height; y++) {
                
-                    brickPrefab.GetComponent<SpriteRenderer>().material = brickColors[y];
+                    brickPrefab.GetComponent<MeshRenderer>().material = brickColors[y];
                     var brick = Instantiate(brickPrefab, gameObject.transform);
                     brick.transform.localPosition = new Vector3(x + threshold * x, y);
                 }

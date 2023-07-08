@@ -12,6 +12,7 @@ TagManager:
   - Paddel
   - Wall
   - Death
+  - Brick
   layers:
   - Default
   - TransparentFX

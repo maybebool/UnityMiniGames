@@ -38,7 +38,7 @@ namespace Breakout.Scripts {
         }
 
         public void Restart() {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Breakout");
             Time.timeScale = 1;
         }
     }
