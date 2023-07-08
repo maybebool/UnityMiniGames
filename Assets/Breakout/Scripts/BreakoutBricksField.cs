@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakoutBricksField : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace Breakout.Scripts {
+    public class BreakoutBricksField : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private int height;
+        [SerializeField] private int width;
+        [SerializeField] private float threshold;
+        [SerializeField] private GameObject brickPrefab;
+        [SerializeField] private Material[] brickColors;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start() {
+
+            for (int x = 0; x < width; x++) {
+            
+                for (int y = 0; y < height; y++) {
+               
+                    brickPrefab.GetComponent<MeshRenderer>().material = brickColors[y];
+                    var brick = Instantiate(brickPrefab, gameObject.transform);
+                    brick.transform.localPosition = new Vector3(x + threshold * x, y);
+                }
+            }
+        }
     }
 }

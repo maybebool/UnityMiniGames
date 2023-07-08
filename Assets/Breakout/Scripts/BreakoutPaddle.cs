@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakoutPaddle : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace Breakout.Scripts {
+    public class BreakoutPaddle : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private float speed;
+        [SerializeField] private float borderLength;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    
+        private void Update() {
+            Movement();
+        }
+
+        private void Movement() {
+
+            if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -borderLength) {
+                transform.position += Vector3.left * (speed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < borderLength) {
+                transform.position += Vector3.right * (speed * Time.deltaTime);
+            }
+
+        }
     }
 }
