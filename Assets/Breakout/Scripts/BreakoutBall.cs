@@ -5,12 +5,12 @@ namespace Breakout.Scripts {
     {
         [SerializeField] private float speed;
         [SerializeField] private BreakoutManager gm;
-        private Rigidbody _rigidbody;
+        private Rigidbody2D _rigidbody;
         private Vector3 _velocity;
 
 
         private void Awake() {
-            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
 

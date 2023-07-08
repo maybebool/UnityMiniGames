@@ -9,6 +9,9 @@ TagManager:
   - Background
   - Spring
   - Platform
+  - Paddel
+  - Wall
+  - Death
   layers:
   - Default
   - TransparentFX
