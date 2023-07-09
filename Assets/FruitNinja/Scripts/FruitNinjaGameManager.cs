@@ -42,6 +42,12 @@ namespace FruitNinja.Scripts {
             foreach (var fruit in fruits) {
                 Destroy(fruit.gameObject);
             }
+            
+            var bombs = FindObjectsOfType<Bomb>();
+
+            foreach (var bomb in bombs) {
+                Destroy(bomb.gameObject);
+            }
         }
 
         public void IncreaseScore(int amount) {
