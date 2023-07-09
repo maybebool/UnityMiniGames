@@ -8,6 +8,10 @@ namespace FruitNinja.Scripts {
 
         private Collider _spawnArea;
         public GameObject[] FruitPrefabs;
+        public GameObject bombPrefab;
+        
+        [Range(0f,1f)]
+        public float bombChance = 0.05f;
         public float minSpawnDelay = 0.25f;
         public float maxSpawnDelay = 1.25f;
         public float minAngle = -15f;
@@ -36,6 +40,9 @@ namespace FruitNinja.Scripts {
             while (enabled) {
 
                 var prefab = FruitPrefabs[Random.Range(0, FruitPrefabs.Length)];
+                if (Random.value < bombChance) {
+                    prefab = bombPrefab;
+                }
                 var pos = new Vector3();
                 pos.x = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
                 pos.y = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);

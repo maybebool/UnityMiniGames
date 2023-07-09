@@ -8,6 +8,7 @@ namespace FruitNinja.Scripts {
         private TrailRenderer trail;
         private bool sclicing;
         public Vector3 Direction { get; private set; }
+        public float sliceForce = 5f;
         public float minSliceVelocity = 0.01f;
 
         private void Awake() {
