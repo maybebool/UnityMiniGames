@@ -8,6 +8,7 @@ namespace FruitNinja.Scripts {
 
         public GameObject whole;
         public GameObject sliced;
+        public int points = 1;
 
 
         private Rigidbody _fruitRb;
@@ -22,6 +23,7 @@ namespace FruitNinja.Scripts {
 
 
         private void Slice(Vector3 direction, Vector3 position, float force) {
+            FindObjectOfType<FruitNinjaGameManager>().IncreaseScore(points);
             whole.SetActive(false);
             sliced.SetActive(true);
             _fruitCollider.enabled = false;
