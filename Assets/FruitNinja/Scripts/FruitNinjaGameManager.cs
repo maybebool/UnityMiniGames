@@ -6,15 +6,12 @@ using UnityEngine.UI;
 namespace FruitNinja.Scripts {
     public class FruitNinjaGameManager : MonoBehaviour {
         
-        
         public TMP_Text scoreText;
         public Image fadeImage;
-
         private int _score;
         private Blade _blade;
         private Spawner _spawner;
-
-
+        
         private void Awake() {
             _blade = FindObjectOfType<Blade>();
             _spawner = FindObjectOfType<Spawner>();
@@ -32,7 +29,6 @@ namespace FruitNinja.Scripts {
             _spawner.enabled = true;
             _score = 0;
             scoreText.text = _score.ToString();
-
         }
 
         private void ClearScene() {
@@ -89,7 +85,5 @@ namespace FruitNinja.Scripts {
                 yield return null;
             }
         }
-        
-
     }
 }
