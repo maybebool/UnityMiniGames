@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1230672854162002186, guid: eabe1a000ae522d4e826b20167193f0f, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3254460277940079276, guid: eabe1a000ae522d4e826b20167193f0f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
