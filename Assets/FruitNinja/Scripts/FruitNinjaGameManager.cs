@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -28,11 +27,11 @@ namespace FruitNinja.Scripts {
         private void NewGame() {
             
             Time.timeScale = 1f;
+            ClearScene();
             _blade.enabled = true;
             _spawner.enabled = true;
             _score = 0;
             scoreText.text = _score.ToString();
-            ClearScene();
 
         }
 
@@ -71,7 +70,7 @@ namespace FruitNinja.Scripts {
                 fadeImage.color = Color.Lerp(Color.clear, Color.white, t);
 
                 Time.timeScale = 1f - t;
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
 
@@ -86,7 +85,7 @@ namespace FruitNinja.Scripts {
                 fadeImage.color = Color.Lerp(Color.white, Color.clear, t);
 
                 Time.timeScale = 1f - t;
-                elapsed += Time.deltaTime;
+                elapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
         }
