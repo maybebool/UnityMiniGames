@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RegularEnemy : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace SpaceInvaders.Scripts {
+    public class RegularEnemy : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite[] animationSprites;
+        [SerializeField] private GameObject bulletPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] private float animationTime = 0.6f;
+        private int enemyFrame;
+
+        private void Start() {
+            InvokeRepeating(nameof(EnemyAnimation), animationTime, animationTime);
+        }
+
+        private void EnemyAnimation() {
+            enemyFrame++;
+            if (enemyFrame >= animationSprites.Length) {
+                enemyFrame = 0;
+            }
+
+            spriteRenderer.sprite = animationSprites[enemyFrame];
+        }
         
+        public void ShootBullet() {
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
