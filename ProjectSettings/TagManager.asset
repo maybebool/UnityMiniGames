@@ -13,6 +13,10 @@ TagManager:
   - Wall
   - Death
   - Brick
+  - Enemy
+  - Bullet
+  - Boundries
+  - SpecialUFO
   layers:
   - Default
   - TransparentFX
