@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 1702230771}
   - component: {fileID: 1702230770}
   m_Layer: 0
-  m_Name: MysteryShip
+  m_Name: SpecialUFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
