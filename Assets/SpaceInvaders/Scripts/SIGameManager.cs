@@ -35,7 +35,7 @@ namespace SpaceInvaders.Scripts {
 
 
         public void OnRestartClick() {
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(3);
         }
 
         public void PointCounter(int amountOfPoints) {
