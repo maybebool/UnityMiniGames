@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace BubbleShooter.Scripts {
+    public class Projectile : MonoBehaviour
     {
+        [SerializeField] private float speed;
+        [SerializeField] private Transform projTransform;
         
-    }
+        private void Update() {
+            projTransform.position += transform.up * (Time.deltaTime * speed);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnTriggerEnter(Collider other) {
+            if (other.CompareTag("Boundries")) {
+                Destroy(gameObject);
+                Cannon.Instance.SetCanShoot(true);
+            }
+
+            if (other.CompareTag("Bubble")) {
+                Destroy(other.gameObject);
+                BSGameManager.Instance.IncreaseBubblePoints();
+            }
+        }
     }
 }
