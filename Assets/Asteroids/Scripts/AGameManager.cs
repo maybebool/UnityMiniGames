@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AGameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace Asteroids.Scripts {
+    public class AGameManager : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private TMP_Text asteroidPoints;
+        public static AGameManager Instance;
+        private int _points;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake() {
+            if (Instance != null && Instance != this) {
+                Destroy(this);
+            }
+            else {
+                Instance = this;
+            }
+        }
+
+        public void GameOver() {
+            SceneManager.LoadScene(2);
+        }
+
+        public void PointCounter() {
+            _points += 10;
+            asteroidPoints.text = _points.ToString();
+        }
     }
 }
