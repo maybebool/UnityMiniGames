@@ -17,6 +17,7 @@ TagManager:
   - Bullet
   - Boundries
   - SpecialUFO
+  - Asteroid
   layers:
   - Default
   - TransparentFX
