@@ -19,7 +19,7 @@ namespace Asteroids.Scripts {
         }
 
         public void GameOver() {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(9);
         }
 
         public void PointCounter() {
