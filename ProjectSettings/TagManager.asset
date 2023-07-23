@@ -18,6 +18,7 @@ TagManager:
   - Boundries
   - SpecialUFO
   - Asteroid
+  - Bubble
   layers:
   - Default
   - TransparentFX
