@@ -39,7 +39,7 @@ namespace BubbleShooter.Scripts {
         }
 
         public void OnRestartClick() {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(10);
         }
 
         public void OnQuitClick() {
