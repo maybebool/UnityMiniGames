@@ -914,6 +914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Food
       objectReference: {fileID: 0}
+    - target: {fileID: 8195109987192136691, guid: 38d49659e6a6c56489f23b53673b6ef5, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 8195109987192136694, guid: 38d49659e6a6c56489f23b53673b6ef5, type: 3}
       propertyPath: m_RootOrder
       value: 3

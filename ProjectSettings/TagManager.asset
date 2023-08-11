@@ -19,6 +19,7 @@ TagManager:
   - SpecialUFO
   - Asteroid
   - Bubble
+  - Food
   layers:
   - Default
   - TransparentFX

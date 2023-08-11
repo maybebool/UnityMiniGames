@@ -46,7 +46,7 @@ namespace Snake.Scripts {
             }
 
             // reserve iteration
-            for (int i = _segments.Count - 1; i > _segments.Count; i--) {
+            for (int i = _segments.Count - 1; i > 0; i--) {
                 _segments[i].position = _segments[i - 1].position;
             }
 
@@ -69,7 +69,18 @@ namespace Snake.Scripts {
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Food")) {
                 Grow();
+            }else if (other.CompareTag("Boundries")) {
+                ResetState();
             }
+        }
+
+        private void ResetState() {
+            for (int i = 1; i < _segments.Count; i++) {
+                Destroy(_segments[i].gameObject);
+            }
+            _segments.Clear();
+            _segments.Add(transform);
+            transform.position = Vector3.zero;
         }
     }
 }
