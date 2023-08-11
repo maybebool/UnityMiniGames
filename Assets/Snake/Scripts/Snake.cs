@@ -1,31 +1,55 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Snake.Scripts {
     public class Snake : MonoBehaviour {
+        public Transform segment;
         private Vector2 _direction = Vector2.right;
-        [SerializeField] private float speed;
+        private List<Transform> _segments;
+        
+        private Vector2Int _input;
+        private float nextUpdate;
 
+        private void Start() {
+            _segments = new List<Transform>();
+            _segments.Add(this.transform);
+        }
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.W)) {
-                _direction = Vector2.up * (speed * Time.fixedDeltaTime);
+            // Only allow turning up or down while moving in the x-axis
+            if (_direction.x != 0f)
+            {
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+                    _input = Vector2Int.up;
+                } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+                    _input = Vector2Int.down;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.S)) {
-                _direction = Vector2.down* (speed * Time.fixedDeltaTime);
-            }
-            else if (Input.GetKeyDown(KeyCode.A)) {
-                _direction = Vector2.left* (speed * Time.fixedDeltaTime);
-            }
-            else if (Input.GetKeyDown(KeyCode.D)) {
-                _direction = Vector2.right* (speed * Time.fixedDeltaTime);
+            // Only allow turning left or right while moving in the y-axis
+            else if (_direction.y != 0f)
+            {
+                if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+                    _input = Vector2Int.right;
+                } else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+                    _input = Vector2Int.left;
+                }
             }
         }
 
 
         private void FixedUpdate() {
-            transform.position =
-                new Vector3(Mathf.Round(transform.position.x) + _direction.x, 
+            
+            if (Time.time < nextUpdate) {
+                return;
+            }
+
+            // Set the new direction based on the input
+            if (_input != Vector2Int.zero) {
+                _direction = _input;
+            }
+            transform.position = new Vector3(
+                Mathf.Round(transform.position.x) + _direction.x, 
                     Mathf.Round(transform.position.y) + _direction.y, 0f);
         }
     }
