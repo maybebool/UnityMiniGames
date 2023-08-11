@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Snake.Scripts {
     public class Snake : MonoBehaviour {
-        public Transform segment;
+        public Transform segmentPrefab;
         private Vector2 _direction = Vector2.right;
         private List<Transform> _segments;
         
@@ -44,6 +45,11 @@ namespace Snake.Scripts {
                 return;
             }
 
+            // reserve iteration
+            for (int i = _segments.Count - 1; i > _segments.Count; i--) {
+                _segments[i].position = _segments[i - 1].position;
+            }
+
             // Set the new direction based on the input
             if (_input != Vector2Int.zero) {
                 _direction = _input;
@@ -51,6 +57,19 @@ namespace Snake.Scripts {
             transform.position = new Vector3(
                 Mathf.Round(transform.position.x) + _direction.x, 
                     Mathf.Round(transform.position.y) + _direction.y, 0f);
+        }
+
+
+        private void Grow() {
+            var segment =  Instantiate(segmentPrefab);
+            segment.position = _segments[^1].position;
+            _segments.Add(segment);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.CompareTag("Food")) {
+                Grow();
+            }
         }
     }
 }

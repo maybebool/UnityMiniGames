@@ -889,6 +889,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2516046541388646838, guid: 364a1695779fedc428f02e9740de6216, type: 3}
+      propertyPath: segment
+      value: 
+      objectReference: {fileID: 4247133096427648348, guid: a6cbaa29c43ee7142a9dd660bdfa72ba, type: 3}
+    - target: {fileID: 2516046541388646838, guid: 364a1695779fedc428f02e9740de6216, type: 3}
+      propertyPath: segmentPrefab
+      value: 
+      objectReference: {fileID: 4247133096427648348, guid: a6cbaa29c43ee7142a9dd660bdfa72ba, type: 3}
     - target: {fileID: 2516046541388646845, guid: 364a1695779fedc428f02e9740de6216, type: 3}
       propertyPath: m_Name
       value: Snake
