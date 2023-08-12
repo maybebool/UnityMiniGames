@@ -72,7 +72,7 @@ namespace Snake.Scripts {
         }
 
         private void ResetGame() {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(11);
         }
 
         private void GrowSnakeTail() {
