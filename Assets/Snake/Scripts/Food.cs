@@ -1,29 +1,43 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Snake.Scripts {
     public class Food : MonoBehaviour {
-        public BoxCollider2D gridArea;
 
+        public BoxCollider2D area;
+        [SerializeField] private Snake snake;
+        private List<Vector3> possibleFoodPositions = new();
+        
 
         private void Start() {
-            RandomizePosition();
+            var bounds = area.bounds;
+            for (int i = (int)bounds.min.x; i < bounds.max.x; i++) {
+                for (int j = (int)bounds.min.y; j < bounds.max.y; j++) {
+                    possibleFoodPositions.Add(new Vector3(i,j,0));
+                }
+            }
+            RandomPosition();
+        }
+        
+        public void RemoveFromPossibleFoodPositions(Vector3 position) {
+            possibleFoodPositions.Remove(position);
+        }
+        
+        public void AddFromPossibleFoodPositions(Vector3 position) {
+            possibleFoodPositions.Add(position);
         }
 
-        private void RandomizePosition() {
-            Bounds bounds = this.gridArea.bounds;
-            var x = Random.Range(bounds.min.x, bounds.max.x);
-            var y = Random.Range(bounds.min.y, bounds.max.y);
+        private void RandomPosition() {
+            var rnd = Random.Range(0, possibleFoodPositions.Count);
+            transform.position = possibleFoodPositions[rnd];
 
-            transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0f);
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Player")) {
-                
+                RandomPosition();
             }
-            RandomizePosition();
         }
     }
 }

@@ -1,86 +1,96 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Snake.Scripts {
     public class Snake : MonoBehaviour {
-        public Transform segmentPrefab;
-        private Vector2 _direction = Vector2.right;
-        private List<Transform> _segments;
         
-        private Vector2Int _input;
-        private float nextUpdate;
+        [SerializeField] private Transform tailPartsPrefab;
+        [SerializeField] private Food food;
+        [SerializeField] private Text pointsText;
+        
+        private List<Transform> _tailParts;
+        private Vector2 _direction = Vector2.right;
+        private Vector2 input;
+        private int points;
+
 
         private void Start() {
-            _segments = new List<Transform>();
-            _segments.Add(this.transform);
+            _tailParts = new List<Transform>();
+            _tailParts.Add(transform);
         }
 
         private void Update() {
-            // Only allow turning up or down while moving in the x-axis
-            if (_direction.x != 0f)
-            {
-                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
-                    _input = Vector2Int.up;
-                } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-                    _input = Vector2Int.down;
+            if (_direction.x != 0f) {
+                if (Input.GetKeyDown(KeyCode.W)) {
+                    input = Vector2.up;
                 }
-            }
-            // Only allow turning left or right while moving in the y-axis
-            else if (_direction.y != 0f)
-            {
-                if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-                    _input = Vector2Int.right;
-                } else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-                    _input = Vector2Int.left;
+                else if (Input.GetKeyDown(KeyCode.S)) {
+                    input = Vector2.down;
+                }
+                
+            } else if (_direction.y != 0f) {
+                if (Input.GetKeyDown(KeyCode.A)) {
+                    input = Vector2.left;
+                }
+                else if (Input.GetKeyDown(KeyCode.D)) {
+                    input = Vector2.right;
                 }
             }
         }
 
 
         private void FixedUpdate() {
+            if (input != Vector2.zero) {
+                _direction = input;
+            }
+
+            var lastTailPartPosition = _tailParts[^1].position;
+            for (int i = _tailParts.Count - 1; i > 0; i--) {
+                _tailParts[i].position = _tailParts[i - 1].position;
+            }
+
+            if (lastTailPartPosition != _tailParts[^1].position) {
+                food.AddFromPossibleFoodPositions(lastTailPartPosition);
+            }
             
-            if (Time.time < nextUpdate) {
-                return;
-            }
-
-            // reserve iteration
-            for (int i = _segments.Count - 1; i > 0; i--) {
-                _segments[i].position = _segments[i - 1].position;
-            }
-
-            // Set the new direction based on the input
-            if (_input != Vector2Int.zero) {
-                _direction = _input;
-            }
-            transform.position = new Vector3(
-                Mathf.Round(transform.position.x) + _direction.x, 
-                    Mathf.Round(transform.position.y) + _direction.y, 0f);
+            transform.position += new Vector3(_direction.x, _direction.y, 0.0f);
+            food.RemoveFromPossibleFoodPositions(_tailParts[0].position);
         }
-
-
-        private void Grow() {
-            var segment =  Instantiate(segmentPrefab);
-            segment.position = _segments[^1].position;
-            _segments.Add(segment);
-        }
-
+        
+        
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.CompareTag("Food")) {
-                Grow();
-            }else if (other.CompareTag("Boundries")) {
-                ResetState();
+            if (other.CompareTag("Boundries")) {
+                ResetGame();
+                transform.position = Vector3.right;
+            }else if (other.CompareTag("Food")) {
+                GrowSnakeTail();
+                PointSetter();
             }
         }
 
-        private void ResetState() {
-            for (int i = 1; i < _segments.Count; i++) {
-                Destroy(_segments[i].gameObject);
-            }
-            _segments.Clear();
-            _segments.Add(transform);
-            transform.position = Vector3.zero;
+        private void ResetGame() {
+            SceneManager.LoadScene(1);
+        }
+
+        private void GrowSnakeTail() {
+            var tailPart = Instantiate(tailPartsPrefab);
+            tailPart.position = _tailParts[^1].position;
+            _tailParts.Add(tailPart);
+            StartCoroutine(ActivateBoxCollider(tailPart.GetComponent<BoxCollider2D>()));
+        }
+
+        IEnumerator ActivateBoxCollider(BoxCollider2D coll) {
+            yield return new WaitForFixedUpdate();
+            coll.enabled = true;
+        }
+
+        private void PointSetter() {
+            points++;
+            pointsText.text = points.ToString();
         }
     }
 }
+
