@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace SpaceWars.Scripts {
     public class SpaceShip : MonoBehaviour {
@@ -15,14 +13,12 @@ namespace SpaceWars.Scripts {
         private Rigidbody2D _rb;
         private float _yMovement;
 
-        
-
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }
 
         private void Start() {
-            lifePointsText.text = maxHealth.ToString();
+            lifePointsText.text = "Life: " + maxHealth;
         }
 
         private void Update() {
@@ -38,7 +34,7 @@ namespace SpaceWars.Scripts {
         public void DamageCalculation(float damage) {
             if (maxHealth > 1) {
                 maxHealth -= damage;
-                lifePointsText.text = maxHealth.ToString();
+                lifePointsText.text = "Life: " + maxHealth;
             }
             else {
                 Destroy(gameObject);
@@ -50,6 +46,5 @@ namespace SpaceWars.Scripts {
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
-
     }
 }

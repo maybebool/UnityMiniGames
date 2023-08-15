@@ -6,7 +6,7 @@ namespace SpaceWars.Scripts {
     public class SWGame_Manager : MonoBehaviour
     {
         [SerializeField] private Button restartButton;
-            
+
         private void OnEnable() {
             restartButton.onClick.AddListener(Restart);
         }

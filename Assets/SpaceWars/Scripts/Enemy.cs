@@ -1,24 +1,20 @@
-using System;
-using SpaceWars.Scripts;
-using TMPro;
 using UnityEngine;
 
-namespace SpaceGame.Scripts {
+namespace SpaceWars.Scripts {
     public class Enemy : MonoBehaviour {
 
         [SerializeField] private float maxHealth;
         [SerializeField] private float movementSpeed;
-
-        private Rigidbody2D rb;
-        private float lifePoints;
+        private Rigidbody2D _rb;
+        
 
         private void Awake() {
-            rb = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
             
         }
 
         private void Start() {
-            rb.velocity = new Vector2(-movementSpeed, 0f);
+            _rb.velocity = new Vector2(-movementSpeed, 0f);
             
         }
 

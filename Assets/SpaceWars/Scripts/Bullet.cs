@@ -1,4 +1,3 @@
-using SpaceGame.Scripts;
 using UnityEngine;
 
 namespace SpaceWars.Scripts {
