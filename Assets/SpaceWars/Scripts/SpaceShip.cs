@@ -22,7 +22,7 @@ namespace SpaceWars.Scripts {
         }
 
         private void Update() {
-            InfiniteScreenLeftRight();
+            InfiniteScreenTopDown();
             _yMovement += Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
             _yMovement = Mathf.Clamp(_yMovement, -8f, 8f) * 0.99f;
             _rb.velocity = new Vector2(0f, _yMovement);
@@ -43,7 +43,7 @@ namespace SpaceWars.Scripts {
             }
         }
         
-        private void InfiniteScreenLeftRight() {
+        private void InfiniteScreenTopDown() {
             if (transform.position.y >= 12f) {
                 transform.position = new Vector3(transform.position.x, -11.9f, 0f);
             }else if (transform.position.y <= -12f) {
