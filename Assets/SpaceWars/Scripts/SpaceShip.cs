@@ -1,26 +1,55 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace SpaceGame.Scripts {
+namespace SpaceWars.Scripts {
     public class SpaceShip : MonoBehaviour {
         [SerializeField] private float movementSpeed;
         [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private Vector3 cannonPivot;
-        private float moveInputY;
-        private Rigidbody2D rb;
-        private float yMovement;
+        [SerializeField] private float maxHealth;
+        [SerializeField] private TMP_Text lifePointsText;
+        [SerializeField] private GameObject gameOverPanel;
+        
+        private float _moveInputY;
+        private Rigidbody2D _rb;
+        private float _yMovement;
+
+        
 
         private void Awake() {
-            rb = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Start() {
+            lifePointsText.text = maxHealth.ToString();
         }
 
         private void Update() {
-            yMovement += Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-            yMovement = Mathf.Clamp(yMovement, -8f, 8f) * 0.99f;
-            rb.velocity = new Vector2(0f, yMovement);
+            _yMovement += Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+            _yMovement = Mathf.Clamp(_yMovement, -8f, 8f) * 0.99f;
+            _rb.velocity = new Vector2(0f, _yMovement);
             
             if (Input.GetMouseButtonDown(0)) {
                 Instantiate(bulletPrefab, new Vector3(transform.position.x + 2, transform.position.y, 0f), Quaternion.identity);
             }
         }
+        
+        public void DamageCalculation(float damage) {
+            if (maxHealth > 1) {
+                maxHealth -= damage;
+                lifePointsText.text = maxHealth.ToString();
+            }
+            else {
+                Destroy(gameObject);
+                GameOver();
+            }
+        }
+
+        private void GameOver() {
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+
     }
 }

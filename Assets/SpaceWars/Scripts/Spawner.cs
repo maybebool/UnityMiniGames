@@ -1,18 +1,15 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SpaceGame.Scripts {
+namespace SpaceWars.Scripts {
     public class Spawner : MonoBehaviour {
 
         [SerializeField] private float maxPos;
         [SerializeField] private Vector2 spawnPos;
         [SerializeField] private GameObject[] enemies;
         [SerializeField] private float interval;
-
-
+        
         private void Start() {
             StartCoroutine(EnemySpawner());
         }

@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace SpaceGame.Scripts {
+namespace SpaceWars.Scripts {
     public class Parallax : MonoBehaviour {
         [SerializeField] private MeshRenderer mr;
         [SerializeField] private float animtaionSpeed;
