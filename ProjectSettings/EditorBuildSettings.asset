@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BubbleShooter.unity
     guid: 4fd9696f4e69871419597d5c4e9708d1
   - enabled: 1
+    path: Assets/Scenes/Snake.unity
+    guid: 579c503e071c03d4eba244ea728701d2
+  - enabled: 1
     path: Assets/Scenes/TicTacToe.unity
     guid: 205cb3c2620df7744abc1f43c458452a
   m_configObjects: {}
