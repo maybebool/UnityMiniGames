@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -41,7 +39,6 @@ namespace SpaceWars.Scripts {
                 if (_hasUpgrade) {
                     Instantiate(bulletPrefab, new Vector3(transform.position.x + 1, transform.position.y +1, 0f), Quaternion.identity);
                     Instantiate(bulletPrefab, new Vector3(transform.position.x + 1, transform.position.y -1, 0f), Quaternion.identity);
-                    
                 }
                 else {
                     Instantiate(bulletPrefab, new Vector3(transform.position.x + 2, transform.position.y, 0f), Quaternion.identity);
@@ -73,15 +70,8 @@ namespace SpaceWars.Scripts {
             Time.timeScale = 0;
         }
 
-        // private IEnumerator GunFireUpgrade() {
-        //     _hasUpgrade = true;
-        //     yield return new WaitForSeconds(10);
-        //     _hasUpgrade = false;
-        // }
-
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("GunUpgrade")) {
-                //StartCoroutine(GunFireUpgrade());
                 _hasUpgrade = true;
                 _gunUpgradeTimer = upgradeTime;
                 Destroy(other.gameObject);
