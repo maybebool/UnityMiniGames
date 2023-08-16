@@ -1139,6 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartButton: {fileID: 957385267}
+  pointsText: {fileID: 1409922960}
 --- !u!4 &1379369113
 Transform:
   m_ObjectHideFlags: 0
