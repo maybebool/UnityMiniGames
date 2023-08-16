@@ -553,6 +553,7 @@ MonoBehaviour:
   movementSpeed: 40
   bulletPrefab: {fileID: 6355339837402334964, guid: 62bceaf1fd3b9b247b28753dc73c88ac, type: 3}
   maxHealth: 3
+  upgradeTime: 2
   lifePointsText: {fileID: 1660242587}
   gameOverPanel: {fileID: 373543703}
 --- !u!1 &736290779
@@ -1046,7 +1047,9 @@ MonoBehaviour:
   - {fileID: 8968738695419342191, guid: 5aad05e0620260c41a260fc199d7e300, type: 3}
   - {fileID: 6286932366937323123, guid: 30e96af08f9642148aa817fd36bf33b6, type: 3}
   - {fileID: 7426403279881020794, guid: 5c7aa27899ec12d459c17439cef97e0d, type: 3}
-  interval: 2.2
+  enemyInterval: 2.2
+  gunUpgradeInterval: 5
+  gunUpgradePrefab: {fileID: 6072608449063722964, guid: 60b009fe7f6979549ba09f8fa7c4bc47, type: 3}
 --- !u!4 &1156933503
 Transform:
   m_ObjectHideFlags: 0
