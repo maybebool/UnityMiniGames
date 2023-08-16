@@ -1048,7 +1048,7 @@ MonoBehaviour:
   - {fileID: 6286932366937323123, guid: 30e96af08f9642148aa817fd36bf33b6, type: 3}
   - {fileID: 7426403279881020794, guid: 5c7aa27899ec12d459c17439cef97e0d, type: 3}
   enemyInterval: 2.2
-  gunUpgradeInterval: 5
+  gunUpgradeInterval: 10
   gunUpgradePrefab: {fileID: 6072608449063722964, guid: 60b009fe7f6979549ba09f8fa7c4bc47, type: 3}
 --- !u!4 &1156933503
 Transform:
