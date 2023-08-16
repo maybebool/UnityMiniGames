@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace SpaceWars.Scripts {
@@ -8,14 +11,16 @@ namespace SpaceWars.Scripts {
         [SerializeField] private float maxPos;
         [SerializeField] private Vector2 spawnPos;
         [SerializeField] private GameObject[] enemies;
-        [SerializeField] private float interval;
+        [SerializeField] private float enemyInterval;
+        [SerializeField] private float gunUpgradeInterval;
+        [SerializeField] private GameObject gunUpgradePrefab;
         
         private void Start() {
             StartCoroutine(EnemySpawner());
+            StartCoroutine(GunUpgradeSpawner());
         }
 
         private Vector2 CalculateRandomSpawnPos() {
-            
             spawnPos.y = Random.Range(-maxPos, maxPos);
             return spawnPos;
         }
@@ -23,8 +28,14 @@ namespace SpaceWars.Scripts {
         private IEnumerator EnemySpawner() {
             
             Instantiate(enemies[Random.Range(0, enemies.Length)], CalculateRandomSpawnPos(), Quaternion.identity);
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSeconds(enemyInterval);
             StartCoroutine(EnemySpawner());
+        }
+
+        private IEnumerator GunUpgradeSpawner() {
+            Instantiate(gunUpgradePrefab, CalculateRandomSpawnPos(), Quaternion.identity);
+            yield return new WaitForSeconds(gunUpgradeInterval);
+            StartCoroutine(GunUpgradeSpawner());
         }
     }
 }

@@ -1046,7 +1046,7 @@ MonoBehaviour:
   - {fileID: 8968738695419342191, guid: 5aad05e0620260c41a260fc199d7e300, type: 3}
   - {fileID: 6286932366937323123, guid: 30e96af08f9642148aa817fd36bf33b6, type: 3}
   - {fileID: 7426403279881020794, guid: 5c7aa27899ec12d459c17439cef97e0d, type: 3}
-  interval: 1.5
+  interval: 2.2
 --- !u!4 &1156933503
 Transform:
   m_ObjectHideFlags: 0
@@ -1518,7 +1518,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119307793}
-  - component: {fileID: 2119307792}
   - component: {fileID: 2119307791}
   m_Layer: 0
   m_Name: DestroyEnemies
@@ -1553,25 +1552,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 22.09042}
   m_EdgeRadius: 0
---- !u!114 &2119307792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119307789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fe06b627dd34a54e8fc3f663709285c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPos: 9
-  spawnPos: {x: 21.81, y: 0}
-  enemies:
-  - {fileID: 8968738695419342191, guid: 5aad05e0620260c41a260fc199d7e300, type: 3}
-  - {fileID: 6286932366937323123, guid: 30e96af08f9642148aa817fd36bf33b6, type: 3}
-  - {fileID: 7426403279881020794, guid: 5c7aa27899ec12d459c17439cef97e0d, type: 3}
-  interval: 1.5
 --- !u!4 &2119307793
 Transform:
   m_ObjectHideFlags: 0
