@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   movementSpeed: 4
+  fireRate: 2
+  bulletPrefab: {fileID: 6355339837402334964, guid: 62bceaf1fd3b9b247b28753dc73c88ac, type: 3}
 --- !u!50 &8968738695419342184
 Rigidbody2D:
   serializedVersion: 4

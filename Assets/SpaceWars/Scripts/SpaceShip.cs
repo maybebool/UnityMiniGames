@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,13 +8,15 @@ namespace SpaceWars.Scripts {
         [SerializeField] private float movementSpeed;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float maxHealth;
+        [SerializeField] private float upgradeTime;
         [SerializeField] private TMP_Text lifePointsText;
         [SerializeField] private GameObject gameOverPanel;
-        
+        private float _gunUpgradeTimer;
+
         private float _moveInputY;
         private Rigidbody2D _rb;
         private float _yMovement;
-
+        private bool _hasUpgrade;
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }
@@ -23,13 +26,26 @@ namespace SpaceWars.Scripts {
         }
 
         private void Update() {
+            if (_gunUpgradeTimer > 0) {
+                _gunUpgradeTimer -= Time.deltaTime;
+                if (_gunUpgradeTimer < 0) {
+                    _hasUpgrade = false;
+                }
+            }
             InfiniteScreenTopDown();
             _yMovement += Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
             _yMovement = Mathf.Clamp(_yMovement, -8f, 8f) * 0.99f;
             _rb.velocity = new Vector2(0f, _yMovement);
             
             if (Input.GetMouseButtonDown(0)) {
-                Instantiate(bulletPrefab, new Vector3(transform.position.x + 2, transform.position.y, 0f), Quaternion.identity);
+                if (_hasUpgrade) {
+                    Instantiate(bulletPrefab, new Vector3(transform.position.x + 1, transform.position.y +1, 0f), Quaternion.identity);
+                    Instantiate(bulletPrefab, new Vector3(transform.position.x + 1, transform.position.y -1, 0f), Quaternion.identity);
+                    
+                }
+                else {
+                    Instantiate(bulletPrefab, new Vector3(transform.position.x + 2, transform.position.y, 0f), Quaternion.identity);
+                }
             }
         }
         
@@ -55,6 +71,21 @@ namespace SpaceWars.Scripts {
         private void GameOver() {
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
+        }
+
+        // private IEnumerator GunFireUpgrade() {
+        //     _hasUpgrade = true;
+        //     yield return new WaitForSeconds(10);
+        //     _hasUpgrade = false;
+        // }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (other.CompareTag("GunUpgrade")) {
+                //StartCoroutine(GunFireUpgrade());
+                _hasUpgrade = true;
+                _gunUpgradeTimer = upgradeTime;
+                Destroy(other.gameObject);
+            }
         }
     }
 }
