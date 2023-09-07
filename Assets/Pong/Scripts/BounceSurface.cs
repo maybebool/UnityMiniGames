@@ -1,10 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace Pong.Scripts
-{
-    public class BounceSurface : MonoBehaviour
-    {
+namespace Pong.Scripts {
+    public class BounceSurface : MonoBehaviour {
         public float bounceStrength;
 
         // increase speed by contact

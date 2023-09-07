@@ -2,18 +2,16 @@ using TMPro;
 using UnityEngine;
 
 namespace Pong.Scripts {
-    
     public class PongGameManager : MonoBehaviour {
-        
         public Ball ball;
         private int _playerScore;
         private int _aiScore;
         public Paddle playerPaddle;
         public Paddle aiPaddle;
-        
+
         public TMP_Text playerScoreText;
         public TMP_Text aiScoreText;
-        
+
 
         public void PlayerScore() {
             _playerScore++;
@@ -27,8 +25,7 @@ namespace Pong.Scripts {
             ResetRound();
         }
 
-        private void ResetRound()
-        {
+        private void ResetRound() {
             playerPaddle.ResetPosition();
             aiPaddle.ResetPosition();
             ball.ResetPosition();
