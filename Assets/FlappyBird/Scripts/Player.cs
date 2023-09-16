@@ -48,7 +48,6 @@ namespace FlappyBird.Scripts {
 
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("Obsticle")) {
-                //FindObjectOfType<GameManager>().GameOver();
                 manager.GetComponent<GameManager>().GameOver();
             }
             else if (col.gameObject.CompareTag("Scoring")) {
