@@ -4,13 +4,13 @@ using UnityEngine.Serialization;
 
 namespace FlappyBird.Scripts {
     public class Player : MonoBehaviour {
-        private Vector3 _direction;
         [SerializeField] private float gravity = -9.8f;
         [SerializeField] private float strength = 5f;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] sprites;
-        private int spriteIndex;
         [SerializeField] private GameObject manager;
+        private int spriteIndex;
+        private Vector3 _direction;
 
 
         private void Awake() {
