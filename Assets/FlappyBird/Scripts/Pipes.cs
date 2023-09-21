@@ -1,10 +1,8 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace FlappyBird.Scripts
-{
-    public class Pipes : MonoBehaviour
-    {
+namespace FlappyBird.Scripts {
+    public class Pipes : MonoBehaviour {
         [SerializeField] private float speed = 4f;
         [SerializeField] private float xOffset = 10f;
         [SerializeField] private float yOffset;
@@ -17,13 +15,10 @@ namespace FlappyBird.Scripts
         }
 
         private void Update() {
-            
             transform.position += Vector3.left * (Time.deltaTime * speed);
-            
-            if (transform.position.x <= -xOffset) {
-                var rnd = Random.Range(-yOffset, yOffset);
-                transform.position = new Vector3(xOffset, rnd, 0);
-            }
+            if (!(transform.position.x <= -xOffset)) return;
+            var rnd = Random.Range(-yOffset, yOffset);
+            transform.position = new Vector3(xOffset, rnd, 0);
         }
     }
 }
