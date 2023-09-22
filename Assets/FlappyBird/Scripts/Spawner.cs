@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace FlappyBird.Scripts {
     public class Spawner : MonoBehaviour {
-        public GameObject prefab;
-        public float spawnRate = 1;
-        public float minHight = -1;
-        public float maxHeight = 1f;
+        [SerializeField] private GameObject prefab;
+        [SerializeField] private float spawnRate = 1;
+        [SerializeField] private float minHeight = -1;
+        [SerializeField] private float maxHeight = 1f;
 
         private void OnEnable() {
             InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
@@ -20,7 +19,7 @@ namespace FlappyBird.Scripts {
 
         private void Spawn() {
             var pipes = Instantiate(prefab, transform.position, Quaternion.identity);
-            pipes.transform.position += Vector3.up * Random.Range(minHight, maxHeight);
+            pipes.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
         }
     }
 }
