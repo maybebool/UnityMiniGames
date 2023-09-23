@@ -1,12 +1,8 @@
-using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace MineSweeper.Scripts
-{
-    public class MS_Board : MonoBehaviour
-    {
+namespace MineSweeper.Scripts {
+    public class MS_Board : MonoBehaviour {
         public Tilemap Tilemap { get; private set; }
         public Tile tileUnknown;
         public Tile tileEmpty;
@@ -21,29 +17,24 @@ namespace MineSweeper.Scripts
         public Tile tileNum6;
         public Tile tileNum7;
         public Tile tileNum8;
-        
 
-        private void Awake()
-        {
+
+        private void Awake() {
             Tilemap = GetComponent<Tilemap>();
         }
 
-        public void Draw(Cell[,] state)
-        {
+        public void Draw(Cell[,] state) {
             var width = state.GetLength(0);
             var height = state.GetLength(1);
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
                     var cell = state[x, y];
                     Tilemap.SetTile(cell.position, GetTile(cell));
                 }
             }
         }
 
-        private Tile GetTile(Cell cell)
-        {
+        private Tile GetTile(Cell cell) {
             if (cell.revealed) {
                 return GetRevealed(cell);
             }
@@ -62,9 +53,7 @@ namespace MineSweeper.Scripts
 
 
         private Tile GetNumberTile(Cell cell) {
-            
             return cell.number switch {
-                
                 1 => tileNum1,
                 2 => tileNum2,
                 3 => tileNum3,

@@ -1,11 +1,8 @@
 using UnityEngine;
 
-namespace MineSweeper.Scripts
-{
-    public struct Cell
-    {
-        public enum Type
-        {
+namespace MineSweeper.Scripts {
+    public struct Cell {
+        public enum Type {
             Invalid,
             Empty,
             Mine,
@@ -18,6 +15,5 @@ namespace MineSweeper.Scripts
         public bool revealed;
         public bool flagged;
         public bool exploded;
-
     }
 }
