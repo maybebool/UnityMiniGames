@@ -19,8 +19,6 @@ namespace SpaceInvaders.Scripts {
 
         private void Awake() {
             _camera = Camera.main;
-
-
             if (Instance != null && Instance != this) {
                 Destroy(this);
             }

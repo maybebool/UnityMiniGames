@@ -48,7 +48,6 @@ namespace Snake.Scripts {
             }
 
             var lastTailPartPosition = _tailParts[^1].position;
-            
             // reverse iteration
             for (int i = _tailParts.Count - 1; i > 0; i--) {
                 _tailParts[i].position = _tailParts[i - 1].position;

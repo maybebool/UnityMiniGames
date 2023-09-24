@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace SpaceInvaders.Scripts {
-    public class Player : MonoBehaviour
-    {
+    public class Player : MonoBehaviour {
         [SerializeField] private float speed = 7f;
         [SerializeField] private GameObject bulletPrefab;
         private Vector3 _leftSide;
@@ -16,8 +15,6 @@ namespace SpaceInvaders.Scripts {
 
         private void Awake() {
             _camera = Camera.main;
-
-
             if (Instance != null && Instance != this) {
                 Destroy(this);
             }
@@ -37,7 +34,7 @@ namespace SpaceInvaders.Scripts {
             if (Input.GetKey(KeyCode.A)) {
                 pos.x -= speed * Time.deltaTime;
             }
-            
+
             if (Input.GetKey(KeyCode.D)) {
                 pos.x += speed * Time.deltaTime;
             }
@@ -45,7 +42,7 @@ namespace SpaceInvaders.Scripts {
             if (Input.GetKeyUp(KeyCode.Space)) {
                 ShootBullet();
             }
-            
+
             pos.x = Mathf.Clamp(pos.x, _leftSide.x + 2f, _rightSide.x - 2f);
             transform.position = pos;
         }
