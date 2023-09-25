@@ -1,14 +1,11 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace TicTacToe.Scripts
-{
-    public class GameController : MonoBehaviour
-    {
+namespace TicTacToe.Scripts {
+    public class GameController : MonoBehaviour {
         private int _hasTurn = 1;
         [SerializeField] private GameObject[] turnIcons;
         [SerializeField] private Sprite[] icons;
@@ -54,6 +51,7 @@ namespace TicTacToe.Scripts
                     rand = 0;
                 }
             }
+
             ButtonFieldClick(rand);
         }
 
