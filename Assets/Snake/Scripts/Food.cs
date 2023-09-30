@@ -9,7 +9,6 @@ namespace Snake.Scripts {
         [SerializeField] private Snake snake;
         private List<Vector3> possibleFoodPositions = new();
         
-
         private void Start() {
             var bounds = area.bounds;
             for (int i = (int)bounds.min.x; i < bounds.max.x; i++) {

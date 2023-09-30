@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace SpaceInvaders.Scripts {
-    public class RegularEnemy : MonoBehaviour
-    {
+    public class RegularEnemy : MonoBehaviour {
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] animationSprites;
         [SerializeField] private GameObject bulletPrefab;
@@ -22,7 +21,7 @@ namespace SpaceInvaders.Scripts {
 
             spriteRenderer.sprite = animationSprites[enemyFrame];
         }
-        
+
         public void ShootBullet() {
             Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         }

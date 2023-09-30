@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace SpaceInvaders.Scripts {
-    public class SIGameManager : MonoBehaviour
-    {
+    public class SIGameManager : MonoBehaviour {
         public static SIGameManager Instance;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private TMP_Text pointText;
@@ -16,7 +15,6 @@ namespace SpaceInvaders.Scripts {
         private void Start() {
             Time.timeScale = 1;
             lifePointsText.text = playerLifePoints.ToString();
-
         }
 
         private void Awake() {
@@ -32,8 +30,7 @@ namespace SpaceInvaders.Scripts {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
         }
-
-
+        
         public void OnRestartClick() {
             SceneManager.LoadScene(3);
         }
@@ -41,13 +38,11 @@ namespace SpaceInvaders.Scripts {
         public void PointCounter(int amountOfPoints) {
             _points += amountOfPoints;
             pointText.text = _points.ToString();
-
         }
 
         public void PlayerLifeSetter() {
             if (playerLifePoints > 1) {
                 playerLifePoints--;
-                
             }
             else {
                 GameOverScreen();

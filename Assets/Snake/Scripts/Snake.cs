@@ -10,7 +10,6 @@ namespace Snake.Scripts {
         [SerializeField] private Transform tailPartsPrefab;
         [SerializeField] private Food food;
         [SerializeField] private Text pointsText;
-        
         private List<Transform> _tailParts;
         private Vector2 _direction = Vector2.right;
         private Vector2 input;
@@ -40,15 +39,13 @@ namespace Snake.Scripts {
                 }
             }
         }
-
-
+        
         private void FixedUpdate() {
             if (input != Vector2.zero) {
                 _direction = input;
             }
 
             var lastTailPartPosition = _tailParts[^1].position;
-            
             // reverse iteration
             for (int i = _tailParts.Count - 1; i > 0; i--) {
                 _tailParts[i].position = _tailParts[i - 1].position;
@@ -61,7 +58,6 @@ namespace Snake.Scripts {
             transform.position += new Vector3(_direction.x, _direction.y, 0.0f);
             food.RemoveFromPossibleFoodPositions(_tailParts[0].position);
         }
-        
         
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Boundries")) {

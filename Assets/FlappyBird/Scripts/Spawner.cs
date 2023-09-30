@@ -11,8 +11,7 @@ namespace FlappyBird.Scripts {
         private void OnEnable() {
             InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
         }
-
-
+        
         private void OnDisable() {
             CancelInvoke(nameof(Spawn));
         }
