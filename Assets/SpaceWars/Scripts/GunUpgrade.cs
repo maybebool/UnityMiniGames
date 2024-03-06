@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace SpaceWars.Scripts {
-    public class GunUpgrade : MonoBehaviour
-    {
+    public class GunUpgrade : MonoBehaviour {
         [SerializeField] private float speed;
 
         private void Update() {

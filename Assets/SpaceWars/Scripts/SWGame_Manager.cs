@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +7,6 @@ namespace SpaceWars.Scripts {
     public class SWGame_Manager : MonoBehaviour {
         
         public static SWGame_Manager Instance;
-
 
         private void Awake() {
             if (Instance != null && Instance != this) {
