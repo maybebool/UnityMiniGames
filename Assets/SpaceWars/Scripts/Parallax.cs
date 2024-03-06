@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SpaceWars.Scripts {
     public class Parallax : MonoBehaviour {

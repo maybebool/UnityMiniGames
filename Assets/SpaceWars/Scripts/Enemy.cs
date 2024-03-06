@@ -13,7 +13,6 @@ namespace SpaceWars.Scripts {
         
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
-            
         }
 
         private void Start() {
