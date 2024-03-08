@@ -3,6 +3,7 @@ using Random = UnityEngine.Random;
 
 namespace FlappyBird.Scripts {
     public class Spawner : MonoBehaviour {
+        
         [SerializeField] private GameObject prefab;
         [SerializeField] private float spawnRate = 1;
         [SerializeField] private float minHeight = -1;

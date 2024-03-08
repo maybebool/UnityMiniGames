@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -25,7 +24,7 @@ namespace Tetris.Scripts {
 
         private void Clear() {
             for (int i = 0; i < cells.Length; i++) {
-                Vector3Int tilePosition = cells[i] + position;
+                var tilePosition = cells[i] + position;
                 tilemap.SetTile(tilePosition, null);
             }
         }
@@ -37,7 +36,7 @@ namespace Tetris.Scripts {
         }
 
         private void Drop() {
-            Vector3Int position = trackingPiece.Position;
+            var position = trackingPiece.Position;
 
             int current = position.y;
             int bottom = -mainBoard.boardSize.y / 2 - 1;
@@ -59,7 +58,7 @@ namespace Tetris.Scripts {
 
         private void Set() {
             for (int i = 0; i < cells.Length; i++) {
-                Vector3Int tilePosition = cells[i] + position;
+                var tilePosition = cells[i] + position;
                 tilemap.SetTile(tilePosition, tile);
             }
         }

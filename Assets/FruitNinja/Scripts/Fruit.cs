@@ -1,5 +1,3 @@
-using System;
-using MineSweeper.Scripts;
 using UnityEngine;
 
 namespace FruitNinja.Scripts {
@@ -11,12 +9,12 @@ namespace FruitNinja.Scripts {
         
         private Rigidbody _fruitRb;
         private Collider _fruitCollider;
-        private ParticleSystem juiceParticleEffect;
+        private ParticleSystem _juiceParticleEffect;
 
         private void Awake() {
             _fruitCollider = GetComponent<Collider>();
             _fruitRb = GetComponent<Rigidbody>();
-            juiceParticleEffect = GetComponentInChildren<ParticleSystem>();
+            _juiceParticleEffect = GetComponentInChildren<ParticleSystem>();
         }
 
 
@@ -25,7 +23,7 @@ namespace FruitNinja.Scripts {
             whole.SetActive(false);
             sliced.SetActive(true);
             _fruitCollider.enabled = false;
-            juiceParticleEffect.Play();
+            _juiceParticleEffect.Play();
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             sliced.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 

@@ -27,6 +27,10 @@ namespace SpaceInvaders.Scripts {
             }
         }
 
+        private void Start() {
+            GenerateEnemyGrid();
+            StartCoroutine(RandomEnemyBulletSpawner());
+        }
 
         private void Update() {
             var leftBorder = _camera.ViewportToWorldPoint(Vector3.zero);
@@ -46,11 +50,10 @@ namespace SpaceInvaders.Scripts {
             }
         }
 
-        private void Start() {
-            GenerateEnemyGrid();
-            StartCoroutine(RandomEnemyBulletSpawner());
-        }
 
+        public void CorrectingCurrentArmyCount(RegularEnemy enemy) {
+            _currentArmyCount.Remove(enemy);
+        }
 
         private IEnumerator RandomEnemyBulletSpawner() {
             while (true) {
@@ -87,8 +90,5 @@ namespace SpaceInvaders.Scripts {
             }
         }
 
-        public void CorrectingCurrentArmyCount(RegularEnemy enemy) {
-            _currentArmyCount.Remove(enemy);
-        }
     }
 }

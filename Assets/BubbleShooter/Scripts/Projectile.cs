@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace BubbleShooter.Scripts {
-    public class Projectile : MonoBehaviour
-    {
+    public class Projectile : MonoBehaviour {
         [SerializeField] private float speed;
         [SerializeField] private Transform projTransform;
         

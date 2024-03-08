@@ -1,20 +1,21 @@
-using System;
 using UnityEngine;
 
 namespace FruitNinja.Scripts {
     public class Blade : MonoBehaviour {
-        private Camera camera;
-        private Collider bladeCollider;
-        private TrailRenderer trail;
-        private bool sclicing;
+        
         public Vector3 Direction { get; private set; }
         public float sliceForce = 5f;
         public float minSliceVelocity = 0.01f;
+        
+        private Camera _camera;
+        private Collider _bladeCollider;
+        private TrailRenderer _trail;
+        private bool _slicing;
 
         private void Awake() {
-            camera = Camera.main;
-            bladeCollider = GetComponent<Collider>();
-            trail = GetComponentInChildren<TrailRenderer>();
+            _camera = Camera.main;
+            _bladeCollider = GetComponent<Collider>();
+            _trail = GetComponentInChildren<TrailRenderer>();
         }
 
         private void Update() {
@@ -24,7 +25,7 @@ namespace FruitNinja.Scripts {
             else if (Input.GetMouseButtonUp(0)) {
                 StopSlicing();
             }
-            else if (sclicing) {
+            else if (_slicing) {
                 ContinueSlicing();
             }
         }
@@ -38,30 +39,30 @@ namespace FruitNinja.Scripts {
         }
 
         private void StartSlicing() {
-            var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            var newPos = _camera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = 0f;
             transform.position = newPos;
 
-            sclicing = true;
-            bladeCollider.enabled = true;
+            _slicing = true;
+            _bladeCollider.enabled = true;
 
-            trail.enabled = true;
-            trail.Clear();
+            _trail.enabled = true;
+            _trail.Clear();
         }
 
         private void StopSlicing() {
-            sclicing = false;
-            bladeCollider.enabled = false;
+            _slicing = false;
+            _bladeCollider.enabled = false;
 
-            trail.enabled = false;
+            _trail.enabled = false;
         }
 
         private void ContinueSlicing() {
-            var newPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            var newPos = _camera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = 0f;
             Direction = newPos - transform.position;
             var velocity = Direction.magnitude / Time.deltaTime;
-            bladeCollider.enabled = velocity > minSliceVelocity;
+            _bladeCollider.enabled = velocity > minSliceVelocity;
             transform.position = newPos;
         }
     }

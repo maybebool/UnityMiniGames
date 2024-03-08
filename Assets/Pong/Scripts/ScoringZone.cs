@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Pong.Scripts {
     public class ScoringZone : MonoBehaviour {
+        
         public EventTrigger.TriggerEvent scoreTrigger;
 
         private void OnCollisionEnter2D(Collision2D other) {

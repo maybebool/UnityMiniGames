@@ -8,9 +8,9 @@ namespace MineSweeper.Scripts {
         public int height = 16;
         public int mineCount = 32;
 
-        private MS_Board board;
-        private Cell[,] state;
-        private bool gameover;
+        private MS_Board _board;
+        private Cell[,] _state;
+        private bool _gameover;
 
         private void OnValidate() {
             mineCount = Mathf.Clamp(mineCount, 0, width * height);
@@ -19,7 +19,7 @@ namespace MineSweeper.Scripts {
         private void Awake() {
             Application.targetFrameRate = 60;
 
-            board = GetComponentInChildren<MS_Board>();
+            _board = GetComponentInChildren<MS_Board>();
         }
 
         private void Start() {
@@ -27,15 +27,15 @@ namespace MineSweeper.Scripts {
         }
 
         private void NewGame() {
-            state = new Cell[width, height];
-            gameover = false;
+            _state = new Cell[width, height];
+            _gameover = false;
 
             GenerateCells();
             GenerateMines();
             GenerateNumbers();
 
             Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
-            board.Draw(state);
+            _board.Draw(_state);
         }
 
         private void GenerateCells() {
@@ -44,7 +44,7 @@ namespace MineSweeper.Scripts {
                     Cell cell = new Cell();
                     cell.position = new Vector3Int(x, y, 0);
                     cell.type = Cell.Type.Empty;
-                    state[x, y] = cell;
+                    _state[x, y] = cell;
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace MineSweeper.Scripts {
                 int x = Random.Range(0, width);
                 int y = Random.Range(0, height);
 
-                while (state[x, y].type == Cell.Type.Mine) {
+                while (_state[x, y].type == Cell.Type.Mine) {
                     x++;
 
                     if (x >= width) {
@@ -67,14 +67,14 @@ namespace MineSweeper.Scripts {
                     }
                 }
 
-                state[x, y].type = Cell.Type.Mine;
+                _state[x, y].type = Cell.Type.Mine;
             }
         }
 
         private void GenerateNumbers() {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = state[x, y];
+                    Cell cell = _state[x, y];
 
                     if (cell.type == Cell.Type.Mine) {
                         continue;
@@ -86,7 +86,7 @@ namespace MineSweeper.Scripts {
                         cell.type = Cell.Type.Number;
                     }
 
-                    state[x, y] = cell;
+                    _state[x, y] = cell;
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace MineSweeper.Scripts {
             if (Input.GetKeyDown(KeyCode.R)) {
                 NewGame();
             }
-            else if (!gameover) {
+            else if (!_gameover) {
                 if (Input.GetMouseButtonDown(1)) {
                     Flag();
                 }
@@ -128,7 +128,7 @@ namespace MineSweeper.Scripts {
 
         private void Flag() {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = board.Tilemap.WorldToCell(worldPosition);
+            Vector3Int cellPosition = _board.Tilemap.WorldToCell(worldPosition);
             Cell cell = GetCell(cellPosition.x, cellPosition.y);
 
             // Cannot flag if already revealed
@@ -137,13 +137,13 @@ namespace MineSweeper.Scripts {
             }
 
             cell.flagged = !cell.flagged;
-            state[cellPosition.x, cellPosition.y] = cell;
-            board.Draw(state);
+            _state[cellPosition.x, cellPosition.y] = cell;
+            _board.Draw(_state);
         }
 
         private void Reveal() {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = board.Tilemap.WorldToCell(worldPosition);
+            Vector3Int cellPosition = _board.Tilemap.WorldToCell(worldPosition);
             Cell cell = GetCell(cellPosition.x, cellPosition.y);
 
             // Cannot reveal if already revealed or while flagged
@@ -163,12 +163,12 @@ namespace MineSweeper.Scripts {
 
                 default:
                     cell.revealed = true;
-                    state[cellPosition.x, cellPosition.y] = cell;
+                    _state[cellPosition.x, cellPosition.y] = cell;
                     CheckWinCondition();
                     break;
             }
 
-            board.Draw(state);
+            _board.Draw(_state);
         }
 
         private void Flood(Cell cell) {
@@ -178,7 +178,7 @@ namespace MineSweeper.Scripts {
 
             // Reveal the cell
             cell.revealed = true;
-            state[cell.position.x, cell.position.y] = cell;
+            _state[cell.position.x, cell.position.y] = cell;
 
             // Keep flooding if the cell is empty, otherwise stop at numbers
             if (cell.type == Cell.Type.Empty) {
@@ -191,21 +191,21 @@ namespace MineSweeper.Scripts {
 
         private void Explode(Cell cell) {
             Debug.Log("Game Over!");
-            gameover = true;
+            _gameover = true;
 
             // Set the mine as exploded
             cell.exploded = true;
             cell.revealed = true;
-            state[cell.position.x, cell.position.y] = cell;
+            _state[cell.position.x, cell.position.y] = cell;
 
             // Reveal all other mines
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    cell = state[x, y];
+                    cell = _state[x, y];
 
                     if (cell.type == Cell.Type.Mine) {
                         cell.revealed = true;
-                        state[x, y] = cell;
+                        _state[x, y] = cell;
                     }
                 }
             }
@@ -214,7 +214,7 @@ namespace MineSweeper.Scripts {
         private void CheckWinCondition() {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = state[x, y];
+                    Cell cell = _state[x, y];
 
                     // All non-mine cells must be revealed to have won
                     if (cell.type != Cell.Type.Mine && !cell.revealed) {
@@ -224,16 +224,16 @@ namespace MineSweeper.Scripts {
             }
 
             Debug.Log("Winner!");
-            gameover = true;
+            _gameover = true;
 
             // Flag all the mines
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = state[x, y];
+                    Cell cell = _state[x, y];
 
                     if (cell.type == Cell.Type.Mine) {
                         cell.flagged = true;
-                        state[x, y] = cell;
+                        _state[x, y] = cell;
                     }
                 }
             }
@@ -241,7 +241,7 @@ namespace MineSweeper.Scripts {
 
         private Cell GetCell(int x, int y) {
             if (IsValid(x, y)) {
-                return state[x, y];
+                return _state[x, y];
             }
             else {
                 return new Cell();

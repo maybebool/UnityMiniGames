@@ -3,15 +3,16 @@ using UnityEngine;
 
 namespace Pong.Scripts {
     public class PongGameManager : MonoBehaviour {
+        
         public Ball ball;
-        private int _playerScore;
-        private int _aiScore;
         public Paddle playerPaddle;
         public Paddle aiPaddle;
 
         public TMP_Text playerScoreText;
         public TMP_Text aiScoreText;
 
+        private int _playerScore;
+        private int _aiScore;
 
         public void PlayerScore() {
             _playerScore++;

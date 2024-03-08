@@ -8,6 +8,7 @@ namespace FruitNinja.Scripts {
         
         public TMP_Text scoreText;
         public Image fadeImage;
+        
         private int _score;
         private Blade _blade;
         private Spawner _spawner;

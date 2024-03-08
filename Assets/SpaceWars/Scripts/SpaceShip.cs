@@ -3,18 +3,20 @@ using UnityEngine;
 
 namespace SpaceWars.Scripts {
     public class SpaceShip : MonoBehaviour {
+        
         [SerializeField] private float movementSpeed;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float maxHealth;
         [SerializeField] private float upgradeTime;
         [SerializeField] private TMP_Text lifePointsText;
         [SerializeField] private GameObject gameOverPanel;
+        
         private float _gunUpgradeTimer;
-
         private float _moveInputY;
         private Rigidbody2D _rb;
         private float _yMovement;
         private bool _hasUpgrade;
+        
         private void Awake() {
             _rb = GetComponent<Rigidbody2D>();
         }

@@ -1,13 +1,10 @@
 using UnityEngine;
 
 namespace Breakout.Scripts {
-    public class BreakoutPaddle : MonoBehaviour
-    {
+    public class BreakoutPaddle : MonoBehaviour {
         [SerializeField] private float speed;
         [SerializeField] private float borderLength;
-
-
-    
+        
         private void Update() {
             Movement();
         }

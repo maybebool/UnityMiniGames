@@ -1,9 +1,9 @@
-using System;
+
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace FlappyBird.Scripts {
     public class Player : MonoBehaviour {
+        
         [SerializeField] private float gravity = -9.8f;
         [SerializeField] private float strength = 5f;
         [SerializeField] private SpriteRenderer spriteRenderer;

@@ -4,6 +4,7 @@ namespace SpaceInvaders.Scripts {
     public class SpecialUFO : MonoBehaviour {
         
         [SerializeField] private float speed;
+        
         private Vector3 _leftSide;
         private Vector3 _rightSide;
         private Camera _camera;

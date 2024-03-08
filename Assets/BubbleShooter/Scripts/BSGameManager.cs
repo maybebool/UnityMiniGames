@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace BubbleShooter.Scripts {
-    public class BSGameManager : MonoBehaviour
-    {
+    public class BSGameManager : MonoBehaviour {
+        
+        public static BSGameManager Instance;
         [SerializeField] private TMP_Text ammoAmountText;
         [SerializeField] private TMP_Text bubblePointsText;
         [SerializeField] private GameObject gameOverPanel;
         private int _bubblePoints;
 
-        public static BSGameManager Instance;
         
         private void Awake() {
             if (Instance != null && Instance != this) {

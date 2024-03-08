@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace Asteroids.Scripts {
-    public class Asteroid : MonoBehaviour
-    {
+    public class Asteroid : MonoBehaviour {
+        
         [SerializeField] private Rigidbody2D rbAsteroid;
         [SerializeField] private SpriteRenderer srAsteroid;
         [SerializeField] private Sprite[] sprites;
@@ -23,26 +23,28 @@ namespace Asteroids.Scripts {
             rbAsteroid.velocity = direction * speed;
 
             var scale = 0f;
-            
+
             if (IsInitialSize) {
                 scale = Random.Range(minSize, maxSize);
             }
             else {
                 scale = Random.Range(minSize, smallAsteroidMaxsize);
             }
-            
+
             transform.localScale = new Vector2(scale, scale);
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Bullet")) {
                 if (transform.localScale.x > smallAsteroidMaxsize) {
                     var rnd = Random.Range(2, 5);
                     for (int i = 0; i < rnd; i++) {
-                        var smallAsteroid = Instantiate(gameObject, transform.position, transform.rotation).GetComponent<Asteroid>();
+                        var smallAsteroid = Instantiate(gameObject, transform.position, transform.rotation)
+                            .GetComponent<Asteroid>();
                         smallAsteroid.AsteroidSetup(false);
                     }
                 }
+
                 AGameManager.Instance.PointCounter();
                 Destroy(gameObject);
             }

@@ -1,10 +1,9 @@
 using UnityEngine;
 
 namespace Asteroids.Scripts {
-    public class Player : MonoBehaviour
-    {
+    public class Player : MonoBehaviour {
+        
         [SerializeField] private Rigidbody2D rb;
-
         [SerializeField] private float movementSpeed;
         [SerializeField] private float movementDirection = 0f;
         [SerializeField] private float rotationSpeed;
@@ -13,12 +12,11 @@ namespace Asteroids.Scripts {
 
         public bool screenWrapping = true;
         private Bounds _screenBounds;
-        
-        
-        private void Start()
-        {
-            GameObject[] boundaries = GameObject.FindGameObjectsWithTag("Boundries");
-            
+
+
+        private void Start() {
+            var boundaries = GameObject.FindGameObjectsWithTag("Boundries");
+
             // Convert screen space bounds to world space bounds
             _screenBounds = new Bounds();
             _screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
@@ -43,7 +41,7 @@ namespace Asteroids.Scripts {
 
         private void Movement() {
             movementDirection = 0f;
-            
+
             if (Input.GetKey(KeyCode.W)) {
                 movementDirection += 1f;
             }
@@ -51,13 +49,12 @@ namespace Asteroids.Scripts {
 
 
         private void DirectionRotation() {
-            
             rotationDirection = 0f;
-            
+
             if (Input.GetKey(KeyCode.A)) {
                 rotationDirection += 1f;
             }
-            
+
             if (Input.GetKey(KeyCode.D)) {
                 rotationDirection -= 1f;
             }
@@ -68,11 +65,10 @@ namespace Asteroids.Scripts {
                 Instantiate(bulletPrefab, transform.position, transform.rotation);
             }
         }
-        
-        
-        private void ScreenWrap()
-        {
-            // Move to the opposite side of the screen if the player exceeds the bounds
+
+
+        // Move to the opposite side of the screen if the player exceeds the bounds
+        private void ScreenWrap() {
             if (rb.position.x > _screenBounds.max.x + 0.5f) {
                 rb.position = new Vector2(_screenBounds.min.x - 0.5f, rb.position.y);
             }

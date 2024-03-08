@@ -6,30 +6,31 @@ namespace Snake.Scripts {
     public class Food : MonoBehaviour {
 
         public BoxCollider2D area;
+        
         [SerializeField] private Snake snake;
-        private List<Vector3> possibleFoodPositions = new();
+        private List<Vector3> _possibleFoodPositions = new();
         
         private void Start() {
             var bounds = area.bounds;
             for (int i = (int)bounds.min.x; i < bounds.max.x; i++) {
                 for (int j = (int)bounds.min.y; j < bounds.max.y; j++) {
-                    possibleFoodPositions.Add(new Vector3(i,j,0));
+                    _possibleFoodPositions.Add(new Vector3(i,j,0));
                 }
             }
             RandomPosition();
         }
         
         public void RemoveFromPossibleFoodPositions(Vector3 position) {
-            possibleFoodPositions.Remove(position);
+            _possibleFoodPositions.Remove(position);
         }
         
         public void AddFromPossibleFoodPositions(Vector3 position) {
-            possibleFoodPositions.Add(position);
+            _possibleFoodPositions.Add(position);
         }
 
         private void RandomPosition() {
-            var rnd = Random.Range(0, possibleFoodPositions.Count);
-            transform.position = possibleFoodPositions[rnd];
+            var rnd = Random.Range(0, _possibleFoodPositions.Count);
+            transform.position = _possibleFoodPositions[rnd];
 
         }
 
