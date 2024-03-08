@@ -7,8 +7,10 @@ namespace SpaceWars.Scripts {
     public class SWGame_Manager : MonoBehaviour {
         
         public static SWGame_Manager Instance;
+        
         [SerializeField] private Button restartButton;
         [SerializeField] private TMP_Text pointsText;
+        
         private int _points;
 
         private void Awake() {

@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Tetris.Scripts {
     public static class Data {
-        public static readonly float cos = Mathf.Cos(Mathf.PI / 2f);
-        public static readonly float sin = Mathf.Sin(Mathf.PI / 2f);
-        public static readonly float[] RotationMatrix = { cos, sin, -sin, cos };
+        public static readonly float Cos = Mathf.Cos(Mathf.PI / 2f);
+        public static readonly float Sin = Mathf.Sin(Mathf.PI / 2f);
+        public static readonly float[] RotationMatrix = { Cos, Sin, -Sin, Cos };
 
         public static readonly Dictionary<Tetromino, Vector2Int[]> Cells = new() {
             { Tetromino.I, new Vector2Int[] { new(-1, 1), new( 0, 1), new( 1, 1), new( 2, 1) } },
@@ -38,8 +38,7 @@ namespace Tetris.Scripts {
             { new(0, 0), new(-1, 0), new(-1,-1), new(0, 2), new(-1, 2) },
             { new(0, 0), new( 1, 0), new( 1, 1), new(0,-2), new( 1,-2) },
         };
-
-        // TODO rework this 
+        
         public static readonly Dictionary<Tetromino, Vector2Int[,]> WallKicks = new() {
             { Tetromino.I, WallKicksI },
             { Tetromino.J, WallKicksJLOSTZ },

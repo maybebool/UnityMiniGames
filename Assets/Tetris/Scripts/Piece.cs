@@ -72,7 +72,7 @@ namespace Tetris.Scripts {
         }
 
         private bool Move(Vector2Int translation) {
-            Vector3Int newPos = this.Position;
+            var newPos = this.Position;
             newPos.x += translation.x;
             newPos.y += translation.y;
 
