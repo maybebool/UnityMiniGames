@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace FlappyBird.Scripts
-{
-    public class GameManager : MonoBehaviour
-    {
+namespace FlappyBird.Scripts {
+    public class GameManager : MonoBehaviour {
         [SerializeField] private GameObject gameOverMenu;
         [SerializeField] private Text scoreText;
         [SerializeField] private Text highScoreText;

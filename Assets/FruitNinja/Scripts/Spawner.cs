@@ -5,24 +5,21 @@ using Random = UnityEngine.Random;
 
 namespace FruitNinja.Scripts {
     public class Spawner : MonoBehaviour {
-
-        private Collider _spawnArea;
+        // TODO make serialized fields
         public GameObject[] FruitPrefabs;
         public GameObject bombPrefab;
-        
-        [Range(0f,1f)]
-        public float bombChance = 0.05f;
+        [Range(0f,1f)] public float bombChance = 0.05f;
         public float minSpawnDelay = 0.25f;
         public float maxSpawnDelay = 1.25f;
         public float minAngle = -15f;
         public float maxAngle = 15f;
         public float minForce = 18f;
         public float maxForce = 22f;
-
         public float maxLifeTime = 5f;
+        
+        private Collider _spawnArea;
 
         private void Awake() {
-
             _spawnArea = GetComponent<Collider>();
         }
 

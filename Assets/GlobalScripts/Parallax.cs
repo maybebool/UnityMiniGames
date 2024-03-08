@@ -10,10 +10,11 @@ namespace GlobalScripts {
     }
 
     public class Parallax : MonoBehaviour {
+        
         public GameName gameName;
-        private MeshRenderer _meshRenderer;
         public float animationSpeed = 0.05f;
 
+        private MeshRenderer _meshRenderer;
 
         private void Awake() {
             _meshRenderer = GetComponent<MeshRenderer>();

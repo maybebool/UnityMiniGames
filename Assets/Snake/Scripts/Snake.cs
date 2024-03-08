@@ -12,10 +12,9 @@ namespace Snake.Scripts {
         [SerializeField] private Text pointsText;
         private List<Transform> _tailParts;
         private Vector2 _direction = Vector2.right;
-        private Vector2 input;
-        private int points;
-
-
+        private Vector2 _input;
+        private int _points;
+        
         private void Start() {
             _tailParts = new List<Transform>();
             _tailParts.Add(transform);
@@ -24,25 +23,25 @@ namespace Snake.Scripts {
         private void Update() {
             if (_direction.x != 0f) {
                 if (Input.GetKeyDown(KeyCode.W)) {
-                    input = Vector2.up;
+                    _input = Vector2.up;
                 }
                 else if (Input.GetKeyDown(KeyCode.S)) {
-                    input = Vector2.down;
+                    _input = Vector2.down;
                 }
                 
             } else if (_direction.y != 0f) {
                 if (Input.GetKeyDown(KeyCode.A)) {
-                    input = Vector2.left;
+                    _input = Vector2.left;
                 }
                 else if (Input.GetKeyDown(KeyCode.D)) {
-                    input = Vector2.right;
+                    _input = Vector2.right;
                 }
             }
         }
         
         private void FixedUpdate() {
-            if (input != Vector2.zero) {
-                _direction = input;
+            if (_input != Vector2.zero) {
+                _direction = _input;
             }
 
             var lastTailPartPosition = _tailParts[^1].position;
@@ -86,8 +85,8 @@ namespace Snake.Scripts {
         }
 
         private void PointSetter() {
-            points++;
-            pointsText.text = points.ToString();
+            _points++;
+            pointsText.text = _points.ToString();
         }
     }
 }

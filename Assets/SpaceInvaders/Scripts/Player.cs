@@ -2,14 +2,16 @@ using UnityEngine;
 
 namespace SpaceInvaders.Scripts {
     public class Player : MonoBehaviour {
+        
+        public static Player Instance;
+        public bool bulletOnTheField;
+        
         [SerializeField] private float speed = 7f;
         [SerializeField] private GameObject bulletPrefab;
+        
         private Vector3 _leftSide;
         private Vector3 _rightSide;
         private Bullet _bullet;
-        public bool bulletOnTheField;
-
-        public static Player Instance;
         private Camera _camera;
 
 

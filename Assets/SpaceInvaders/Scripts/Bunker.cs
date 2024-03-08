@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace SpaceInvaders.Scripts {
     public class Bunker : MonoBehaviour {
+        
         [SerializeField] private int lifePoints;
 
         private void OnTriggerEnter2D(Collider2D other) {

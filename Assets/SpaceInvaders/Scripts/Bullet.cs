@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace SpaceInvaders.Scripts {
-    public class Bullet : MonoBehaviour
-    {
+    public class Bullet : MonoBehaviour {
+        
         [SerializeField] private float speed;
         private Vector3 _directionUp = Vector3.up;
         private Vector3 _directionDown = Vector3.down;

@@ -4,13 +4,15 @@ using UnityEngine.SceneManagement;
 
 namespace SpaceInvaders.Scripts {
     public class SIGameManager : MonoBehaviour {
+        
         public static SIGameManager Instance;
+        
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private TMP_Text pointText;
         [SerializeField] private TMP_Text lifePointsText;
+        [SerializeField] private int playerLifePoints;
 
         private int _points;
-        [SerializeField] private int playerLifePoints;
 
         private void Start() {
             Time.timeScale = 1;
