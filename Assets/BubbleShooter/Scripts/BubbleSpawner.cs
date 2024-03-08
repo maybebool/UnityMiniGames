@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BubbleShooter.Scripts {
-    public class BubbleSpawner : MonoBehaviour
-    {
+    public class BubbleSpawner : MonoBehaviour {
+        
         [SerializeField] private GameObject bubblePrefab;
         [SerializeField] private float offsetX = 1;
         [SerializeField] private float offsetY = 0.5f;

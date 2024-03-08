@@ -7,6 +7,9 @@ namespace SpaceWars.Scripts {
     public class SWGame_Manager : MonoBehaviour {
         
         public static SWGame_Manager Instance;
+        [SerializeField] private Button restartButton;
+        [SerializeField] private TMP_Text pointsText;
+        private int _points;
 
         private void Awake() {
             if (Instance != null && Instance != this) {
@@ -17,13 +20,10 @@ namespace SpaceWars.Scripts {
             }
         }
 
-        [SerializeField] private Button restartButton;
-        [SerializeField] private TMP_Text pointsText;
-        private int points;
 
         public void CountPoint() {
-            points++;
-            pointsText.text = points.ToString();
+            _points++;
+            pointsText.text = _points.ToString();
         }
         private void OnEnable() {
             restartButton.onClick.AddListener(Restart);

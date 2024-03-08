@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Asteroids.Scripts {
-    public class AGameManager : MonoBehaviour
-    {
-        [SerializeField] private TMP_Text asteroidPoints;
+    public class AGameManager : MonoBehaviour {
+        
         public static AGameManager Instance;
+        [SerializeField] private TMP_Text asteroidPoints;
         private int _points;
 
         private void Awake() {

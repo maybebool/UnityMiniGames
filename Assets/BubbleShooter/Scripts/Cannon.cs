@@ -1,8 +1,9 @@
 using BubbleShooter.Scripts;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
-{
+public class Cannon : MonoBehaviour {
+    
+    public static Cannon Instance;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject bullet;
@@ -11,7 +12,6 @@ public class Cannon : MonoBehaviour
     private int _ammoCount = 5;
     private bool _canShoot = true;
 
-    public static Cannon Instance;
         
     private void Awake() {
         if (Instance != null && Instance != this) {
