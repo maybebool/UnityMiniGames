@@ -612,7 +612,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281807968}
-  - component: {fileID: 1281807967}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -620,33 +619,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1281807967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281807966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db0ceaadeb94c2292408f077ee50db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidsButton: {fileID: 0}
-  breakoutButton: {fileID: 0}
-  bubbleShooterButton: {fileID: 0}
-  doodleJumpButton: {fileID: 0}
-  flappyBirdButton: {fileID: 0}
-  fruitNinjaButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
-  mineSweeperButton: {fileID: 0}
-  pongButton: {fileID: 0}
-  snakeButton: {fileID: 0}
-  spaceInvadersButton: {fileID: 0}
-  spaceWarsButton: {fileID: 0}
-  tetrisButton: {fileID: 0}
-  ticTacToeButton: {fileID: 0}
-  wimmelbildButton: {fileID: 0}
 --- !u!4 &1281807968
 Transform:
   m_ObjectHideFlags: 0
@@ -773,6 +745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2146390865}
+  - component: {fileID: 2146390866}
   m_Layer: 0
   m_Name: Slogan
   m_TagString: Untagged
@@ -797,6 +770,20 @@ Transform:
   - {fileID: 643435331}
   m_Father: {fileID: 527378602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2146390866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146390864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27726e53be2d394cbcd13fb828c46d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 15
+  frequency: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
