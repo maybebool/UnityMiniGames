@@ -6,13 +6,14 @@
         DoodleJump = 3,
         FlappyBird = 4,
         FruitNinja = 5,
-        MineSweeper = 6,
-        Pong = 7,
-        Snake = 8,
-        SpaceInvaders = 9,
-        SpaceWars = 10,
-        Tetris = 11,
-        TicTacToe = 12,
-        Wimmelbild = 13
+        MainMenu = 6,
+        MineSweeper = 7,
+        Pong = 8,
+        Snake = 9,
+        SpaceInvaders = 10,
+        SpaceWars = 11,
+        Tetris = 12,
+        TicTacToe = 13,
+        Wimmelbild = 14
     }
 }
