@@ -12,7 +12,6 @@ namespace Menu {
         [SerializeField] private Button doodleJumpButton;
         [SerializeField] private Button flappyBirdButton;
         [SerializeField] private Button fruitNinjaButton;
-        [SerializeField] private Button mainMenuButton;
         [SerializeField] private Button mineSweeperButton;
         [SerializeField] private Button pongButton;
         [SerializeField] private Button snakeButton;
@@ -30,7 +29,6 @@ namespace Menu {
             doodleJumpButton.onClick.AddListener(() => LoadScene(Scenes.DoodleJump));
             flappyBirdButton.onClick.AddListener(() => LoadScene(Scenes.FlappyBird));
             fruitNinjaButton.onClick.AddListener(() => LoadScene(Scenes.FruitNinja));
-            mainMenuButton.onClick.AddListener(() => LoadScene(Scenes.MainMenu));
             mineSweeperButton.onClick.AddListener(() => LoadScene(Scenes.MineSweeper));
             pongButton.onClick.AddListener(() => LoadScene(Scenes.Pong));
             snakeButton.onClick.AddListener(() => LoadScene(Scenes.Snake));
@@ -48,7 +46,6 @@ namespace Menu {
             doodleJumpButton.onClick.RemoveListener(() => LoadScene(Scenes.DoodleJump));
             flappyBirdButton.onClick.RemoveListener(() => LoadScene(Scenes.FlappyBird));
             fruitNinjaButton.onClick.RemoveListener(() => LoadScene(Scenes.FruitNinja));
-            mainMenuButton.onClick.RemoveListener(() => LoadScene(Scenes.MainMenu));
             mineSweeperButton.onClick.RemoveListener(() => LoadScene(Scenes.MineSweeper));
             pongButton.onClick.RemoveListener(() => LoadScene(Scenes.Pong));
             snakeButton.onClick.RemoveListener(() => LoadScene(Scenes.Snake));
