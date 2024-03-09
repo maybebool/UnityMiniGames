@@ -603,6 +603,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1281807966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281807968}
+  - component: {fileID: 1281807967}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1281807967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281807966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db0ceaadeb94c2292408f077ee50db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidsButton: {fileID: 0}
+  breakoutButton: {fileID: 0}
+  bubbleShooterButton: {fileID: 0}
+  doodleJumpButton: {fileID: 0}
+  flappyBirdButton: {fileID: 0}
+  fruitNinjaButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
+  mineSweeperButton: {fileID: 0}
+  pongButton: {fileID: 0}
+  snakeButton: {fileID: 0}
+  spaceInvadersButton: {fileID: 0}
+  spaceWarsButton: {fileID: 0}
+  tetrisButton: {fileID: 0}
+  ticTacToeButton: {fileID: 0}
+  wimmelbildButton: {fileID: 0}
+--- !u!4 &1281807968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281807966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614808064
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,3 +805,4 @@ SceneRoots:
   - {fileID: 78464217}
   - {fileID: 1614808068}
   - {fileID: 785033492}
+  - {fileID: 1281807968}
