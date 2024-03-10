@@ -6,9 +6,9 @@ namespace DoodleJump.Scripts {
     public class Player : MonoBehaviour {
 
         [SerializeField] private Camera camera;
-        [SerializeField] private float normalspeed;
-        [SerializeField] private float springspeed;
-        [SerializeField] private float speed;
+        [SerializeField] private float normalBounceFactor;
+        [SerializeField] private float specialPlatformBounceFactor;
+        [SerializeField] private float movementSpeed;
         [SerializeField] private Text scoreText;
         [SerializeField] private float scrollSpeed;
         [SerializeField] private List<Transform> platforms = new();
@@ -44,7 +44,7 @@ namespace DoodleJump.Scripts {
 
 
         private void FixedUpdate() {
-            _rb.velocity = new Vector2(_moveInput * speed, _rb.velocity.y);
+            _rb.velocity = new Vector2(_moveInput * movementSpeed, _rb.velocity.y);
         }
 
         private void FlipSpriteBasedOnDirection() {
@@ -67,11 +67,11 @@ namespace DoodleJump.Scripts {
             if (_rb.velocity.y <= 0) {
                 if (other.CompareTag("NormalPlatform")) {
                     _rb.velocity = Vector2.zero;
-                    _rb.velocity += (Vector2.up * normalspeed);
+                    _rb.velocity += (Vector2.up * normalBounceFactor);
                 }
                 if (other.CompareTag("SpringPlatform")) {
                     _rb.velocity = Vector2.zero;
-                    _rb.velocity += (Vector2.up * springspeed);
+                    _rb.velocity += (Vector2.up * specialPlatformBounceFactor);
                 }
             }
         }
