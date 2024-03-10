@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Asteroids.Scripts {
-    public class AGameManager : MonoBehaviour {
+    public class AsteroidsGameManager : MonoBehaviour {
         
-        public static AGameManager Instance;
+        public static AsteroidsGameManager Instance;
         [SerializeField] private TMP_Text asteroidPoints;
         private int _points;
 

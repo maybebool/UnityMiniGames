@@ -46,7 +46,7 @@ namespace Asteroids.Scripts {
                 }
             }
 
-            AGameManager.Instance.PointCounter();
+            AsteroidsGameManager.Instance.PointCounter();
             Destroy(gameObject);
         }
 

@@ -85,7 +85,7 @@ namespace Asteroids.Scripts {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Asteroid")) {
-                AGameManager.GameOver();
+                AsteroidsGameManager.GameOver();
             }
         }
     }
