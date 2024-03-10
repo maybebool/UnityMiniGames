@@ -34,20 +34,20 @@ namespace Asteroids.Scripts {
             transform.localScale = new Vector2(scale, scale);
         }
 
+        
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.CompareTag("Bullet")) {
-                if (transform.localScale.x > smallAsteroidMaxsize) {
-                    var rnd = Random.Range(2, 5);
-                    for (int i = 0; i < rnd; i++) {
-                        var smallAsteroid = Instantiate(gameObject, transform.position, transform.rotation)
-                            .GetComponent<Asteroid>();
-                        smallAsteroid.AsteroidSetup(false);
-                    }
+            if (!other.gameObject.CompareTag("Bullet")) return;
+            if (transform.localScale.x > smallAsteroidMaxsize) {
+                var rnd = Random.Range(2, 5);
+                for (int i = 0; i < rnd; i++) {
+                    var smallAsteroid = Instantiate(gameObject, transform.position, transform.rotation)
+                        .GetComponent<Asteroid>();
+                    smallAsteroid.AsteroidSetup(false);
                 }
-
-                AGameManager.Instance.PointCounter();
-                Destroy(gameObject);
             }
+
+            AGameManager.Instance.PointCounter();
+            Destroy(gameObject);
         }
 
         private void OnTriggerExit2D(Collider2D other) {

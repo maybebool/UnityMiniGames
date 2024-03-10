@@ -1,3 +1,4 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,8 @@ namespace Asteroids.Scripts {
             }
         }
 
-        public void GameOver() {
-            SceneManager.LoadScene(9);
+        public static void GameOver() {
+            SceneManager.LoadScene((int)Scenes.Asteroids);
         }
 
         public void PointCounter() {

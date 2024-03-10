@@ -10,7 +10,6 @@ namespace Asteroids.Scripts {
             rbBullet.velocity = transform.up * speed;
         }
 
-
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Player")) {
                 return;
