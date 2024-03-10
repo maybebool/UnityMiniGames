@@ -1,3 +1,4 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,7 +33,7 @@ namespace Breakout.Scripts {
         }
         
         public void Restart() {
-            SceneManager.LoadScene("Breakout");
+            SceneManager.LoadScene((int)Scenes.Breakout);
             Time.timeScale = 1;
         }
 

@@ -15,7 +15,7 @@ namespace Asteroids.Scripts {
 
 
         private void Start() {
-            var boundaries = GameObject.FindGameObjectsWithTag("Boundries");
+            GameObject.FindGameObjectsWithTag("Boundries");
 
             // Convert screen space bounds to world space bounds
             _screenBounds = new Bounds();
@@ -67,7 +67,7 @@ namespace Asteroids.Scripts {
         }
 
 
-        // Move to the opposite side of the screen if the player exceeds the bounds
+        // Move to the opposite side of the screen if the player exceeds the boundary
         private void ScreenWrap() {
             if (rb.position.x > _screenBounds.max.x + 0.5f) {
                 rb.position = new Vector2(_screenBounds.min.x - 0.5f, rb.position.y);
@@ -85,7 +85,7 @@ namespace Asteroids.Scripts {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.gameObject.CompareTag("Asteroid")) {
-                AGameManager.Instance.GameOver();
+                AsteroidsGameManager.GameOver();
             }
         }
     }

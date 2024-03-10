@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BubbleShooter.Scripts {
     public class Cannon : MonoBehaviour {
@@ -8,8 +9,7 @@ namespace BubbleShooter.Scripts {
         [SerializeField] private Transform player;
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform bulletPivot;
-        
-        private int _ammoCount = 5;
+        [SerializeField] private int ammoCount = 10;
         private bool _canShoot = true;
 
         
@@ -23,7 +23,7 @@ namespace BubbleShooter.Scripts {
         }
 
         private void Start() {
-            BSGameManager.Instance.AmmoCountDisplay(_ammoCount);
+            BubbleShooterManager.Instance.AmmoCountDisplay(ammoCount);
         }
 
         private void Update() {
@@ -33,11 +33,11 @@ namespace BubbleShooter.Scripts {
 
             if (!Input.GetMouseButtonUp(0)) return;
             if (!_canShoot) return;
-            if (_ammoCount < 1) return;
+            if (ammoCount < 1) return;
             
             Instantiate(bullet, bulletPivot.position, player.rotation);
-            _ammoCount--;
-            BSGameManager.Instance.AmmoCountDisplay(_ammoCount);
+            ammoCount--;
+            BubbleShooterManager.Instance.AmmoCountDisplay(ammoCount);
             _canShoot = false;
         }
 
@@ -51,8 +51,8 @@ namespace BubbleShooter.Scripts {
 
         public void SetCanShoot(bool canShoot) {
             _canShoot = canShoot;
-            if (_ammoCount < 1) {
-                BSGameManager.Instance.GameOver();
+            if (ammoCount < 1) {
+                BubbleShooterManager.Instance.GameOver();
             }
         }
     }

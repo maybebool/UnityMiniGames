@@ -9,6 +9,7 @@ namespace Breakout.Scripts {
             Movement();
         }
 
+        // keeps movement inside the borders
         private void Movement() {
 
             if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -borderLength) {
@@ -18,7 +19,6 @@ namespace Breakout.Scripts {
             if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < borderLength) {
                 transform.position += Vector3.right * (speed * Time.deltaTime);
             }
-
         }
     }
 }

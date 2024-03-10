@@ -6,37 +6,33 @@ namespace Asteroids.Scripts {
         
         [SerializeField] private GameObject asteroidPrefab;
         [SerializeField] private float spawnPosXMax, spawnPosYMax;
-        private float _spawnInterval = 4f;
+        private readonly float _spawnInterval = 4f;
 
 
         private void Start() {
             StartCoroutine(AsteroidSpawning());
         }
+        
+        // 50/50 chance of positive or negative value
+        private float GetRandomPos(float maxPos) {
+            return Random.Range(0, 2) == 0 ? maxPos : -maxPos;
+        }
 
+        private float GetRandomMaxPos(float maxPos) {
+            return Random.Range(-maxPos, maxPos);
+        }
 
+        // 50/50 chance of choosing the spawn point depending on the x and y axis
         private Vector2 CreateRandomSpawnPosition() {
             var spawnPos = new Vector2();
             if (Random.Range(0, 2) == 0) {
-                if (Random.Range(0, 2) == 0) {
-                    spawnPos.x = spawnPosXMax;
-                }
-                else {
-                    spawnPos.x = -spawnPosXMax;
-                }
-
-                spawnPos.y = Random.Range(-spawnPosYMax, spawnPosYMax);
+                spawnPos.x = GetRandomPos(spawnPosXMax);
+                spawnPos.y = GetRandomMaxPos(spawnPosYMax);
             }
             else {
-                if (Random.Range(0, 2) == 0) {
-                    spawnPos.y = spawnPosYMax;
-                }
-                else {
-                    spawnPos.y = -spawnPosYMax;
-                }
-
-                spawnPos.x = Random.Range(-spawnPosXMax, spawnPosXMax);
+                spawnPos.y = GetRandomPos(spawnPosYMax);
+                spawnPos.x = GetRandomMaxPos(spawnPosXMax);
             }
-
             return spawnPos;
         }
 

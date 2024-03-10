@@ -1,14 +1,16 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace BubbleShooter.Scripts {
-    public class BSGameManager : MonoBehaviour {
+    public class BubbleShooterManager : MonoBehaviour {
         
-        public static BSGameManager Instance;
+        public static BubbleShooterManager Instance;
         [SerializeField] private TMP_Text ammoAmountText;
         [SerializeField] private TMP_Text bubblePointsText;
         [SerializeField] private GameObject gameOverPanel;
+        [SerializeField] private GameObject wonPanel;
         private int _bubblePoints;
 
         
@@ -20,10 +22,19 @@ namespace BubbleShooter.Scripts {
                 Instance = this;
             }
         }
-
+        
         private void Start() {
+            Time.timeScale = 1;
             gameOverPanel.SetActive(false);
+            wonPanel.SetActive(false);
         }
+
+        private void Update() {
+            if (BubbleList.bubbleList.Count >= 1) return;
+            WonGame();
+            BubbleList.bubbleList.Clear();
+        }
+
 
         public void IncreaseBubblePoints() {
             _bubblePoints += 100;
@@ -38,12 +49,17 @@ namespace BubbleShooter.Scripts {
             gameOverPanel.SetActive(true);
         }
 
+        private void WonGame() {
+            wonPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+
         public void OnRestartClick() {
-            SceneManager.LoadScene(10);
+            SceneManager.LoadScene((int)Scenes.BubbleShooter);
         }
 
         public void OnQuitClick() {
-            Application.Quit();
+            SceneManager.LoadScene((int)Scenes.MainMenu);
         }
     }
 }

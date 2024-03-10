@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace BubbleShooter.Scripts {
     public class Projectile : MonoBehaviour {
+        
         [SerializeField] private float speed;
         [SerializeField] private Transform projTransform;
-        
+
         private void Update() {
             projTransform.position += transform.up * (Time.deltaTime * speed);
         }
@@ -17,7 +19,9 @@ namespace BubbleShooter.Scripts {
 
             if (other.CompareTag("Bubble")) {
                 Destroy(other.gameObject);
-                BSGameManager.Instance.IncreaseBubblePoints();
+                BubbleList.bubbleList.Remove(other.gameObject);
+                BubbleShooterManager.Instance.IncreaseBubblePoints();
+
             }
         }
     }

@@ -1,11 +1,12 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Asteroids.Scripts {
-    public class AGameManager : MonoBehaviour {
+    public class AsteroidsGameManager : MonoBehaviour {
         
-        public static AGameManager Instance;
+        public static AsteroidsGameManager Instance;
         [SerializeField] private TMP_Text asteroidPoints;
         private int _points;
 
@@ -18,8 +19,8 @@ namespace Asteroids.Scripts {
             }
         }
 
-        public void GameOver() {
-            SceneManager.LoadScene(9);
+        public static void GameOver() {
+            SceneManager.LoadScene((int)Scenes.Asteroids);
         }
 
         public void PointCounter() {
