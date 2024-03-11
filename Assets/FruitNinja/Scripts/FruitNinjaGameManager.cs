@@ -1,11 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace FruitNinja.Scripts {
     public class FruitNinjaGameManager : MonoBehaviour {
-        
+
+        public static List<GameObject> spawnedSceneObjects = new();
         public TMP_Text scoreText;
         public Image fadeImage;
         
@@ -32,18 +34,41 @@ namespace FruitNinja.Scripts {
             scoreText.text = _score.ToString();
         }
 
+        // private void ClearScene() {
+        //     var fruits = FindObjectsOfType<Fruit>();
+        //
+        //     foreach (var fruit in fruits) {
+        //         Destroy(fruit.gameObject);
+        //     }
+        //     
+        //     var bombs = FindObjectsOfType<Bomb>();
+        //
+        //     foreach (var bomb in bombs) {
+        //         Destroy(bomb.gameObject);
+        //     }
+        // }
+        
+        
+        // private void ClearScene() 
+        // {
+        //     DestroyObjectsOfType<Fruit>();
+        //     DestroyObjectsOfType<Bomb>();
+        // }
+        //
+        // private void DestroyObjectsOfType<T>() where T: MonoBehaviour
+        // {
+        //     var objects = FindObjectsOfType<T>();
+        //     foreach (var obj in objects)
+        //     {
+        //         Destroy(obj.gameObject);
+        //     }
+        // }
+        
         private void ClearScene() {
-            var fruits = FindObjectsOfType<Fruit>();
-
-            foreach (var fruit in fruits) {
-                Destroy(fruit.gameObject);
+            foreach (var sceneObject in spawnedSceneObjects) {
+                Destroy(sceneObject.gameObject);
             }
-            
-            var bombs = FindObjectsOfType<Bomb>();
-
-            foreach (var bomb in bombs) {
-                Destroy(bomb.gameObject);
-            }
+            spawnedSceneObjects.Clear();
         }
 
         public void IncreaseScore(int amount) {
