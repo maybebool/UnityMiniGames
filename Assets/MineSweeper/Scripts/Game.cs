@@ -10,13 +10,15 @@ namespace MineSweeper.Scripts {
 
         private MS_Board _board;
         private Cell[,] _state;
-        private bool _gameover;
+        private bool _gameOver;
+        private Camera _mainCam;
 
         private void OnValidate() {
             mineCount = Mathf.Clamp(mineCount, 0, width * height);
         }
 
         private void Awake() {
+            _mainCam = Camera.main;
             Application.targetFrameRate = 60;
 
             _board = GetComponentInChildren<MS_Board>();
@@ -28,20 +30,20 @@ namespace MineSweeper.Scripts {
 
         private void NewGame() {
             _state = new Cell[width, height];
-            _gameover = false;
+            _gameOver = false;
 
             GenerateCells();
             GenerateMines();
             GenerateNumbers();
 
-            Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+            _mainCam.transform.position = new Vector3(width / 2f, height / 2f, -10f);
             _board.Draw(_state);
         }
 
         private void GenerateCells() {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = new Cell();
+                    var cell = new Cell();
                     cell.position = new Vector3Int(x, y, 0);
                     cell.type = Cell.Type.Empty;
                     _state[x, y] = cell;
@@ -51,8 +53,8 @@ namespace MineSweeper.Scripts {
 
         private void GenerateMines() {
             for (int i = 0; i < mineCount; i++) {
-                int x = Random.Range(0, width);
-                int y = Random.Range(0, height);
+                var x = Random.Range(0, width);
+                var y = Random.Range(0, height);
 
                 while (_state[x, y].type == Cell.Type.Mine) {
                     x++;
@@ -74,7 +76,7 @@ namespace MineSweeper.Scripts {
         private void GenerateNumbers() {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = _state[x, y];
+                    var cell = _state[x, y];
 
                     if (cell.type == Cell.Type.Mine) {
                         continue;
@@ -92,7 +94,7 @@ namespace MineSweeper.Scripts {
         }
 
         private int CountMines(int cellX, int cellY) {
-            int count = 0;
+            var count = 0;
 
             for (int adjacentX = -1; adjacentX <= 1; adjacentX++) {
                 for (int adjacentY = -1; adjacentY <= 1; adjacentY++) {
@@ -100,8 +102,8 @@ namespace MineSweeper.Scripts {
                         continue;
                     }
 
-                    int x = cellX + adjacentX;
-                    int y = cellY + adjacentY;
+                    var x = cellX + adjacentX;
+                    var y = cellY + adjacentY;
 
                     if (GetCell(x, y).type == Cell.Type.Mine) {
                         count++;
@@ -116,121 +118,126 @@ namespace MineSweeper.Scripts {
             if (Input.GetKeyDown(KeyCode.R)) {
                 NewGame();
             }
-            else if (!_gameover) {
+            else if (!_gameOver) {
                 if (Input.GetMouseButtonDown(1)) {
-                    Flag();
+                    FlagCellAtMousePosition();
                 }
                 else if (Input.GetMouseButtonDown(0)) {
                     Reveal();
                 }
             }
         }
+        
+        private Cell GetCellAtMousePosition() {
+            var worldPosition = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+            var cellPosition = _board.TileMap.WorldToCell(worldPosition);
+            return GetCell(cellPosition.x, cellPosition.y);
+        }
 
-        private void Flag() {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = _board.Tilemap.WorldToCell(worldPosition);
-            Cell cell = GetCell(cellPosition.x, cellPosition.y);
-
-            // Cannot flag if already revealed
-            if (cell.type == Cell.Type.Invalid || cell.revealed) {
-                return;
-            }
-
-            cell.flagged = !cell.flagged;
-            _state[cellPosition.x, cellPosition.y] = cell;
+        private void UpdateCellStateAndRedraw(int x, int y, Cell cell) {
+            _state[x, y] = cell;
             _board.Draw(_state);
         }
 
+        private void FlagCellAtMousePosition() {
+            var cell = GetCellAtMousePosition();
+
+            // Cannot flag if already revealed
+            if (cell.type == Cell.Type.Invalid || cell.revealed) return;
+
+            cell.flagged = !cell.flagged;
+            UpdateCellStateAndRedraw(cell.position.x, cell.position.y, cell);
+        }
+
         private void Reveal() {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = _board.Tilemap.WorldToCell(worldPosition);
-            Cell cell = GetCell(cellPosition.x, cellPosition.y);
+            var cell = GetCellAtMousePosition();
 
             // Cannot reveal if already revealed or while flagged
-            if (cell.type == Cell.Type.Invalid || cell.revealed || cell.flagged) {
-                return;
-            }
+            if (cell.type == Cell.Type.Invalid || cell.revealed || cell.flagged) return;
 
             switch (cell.type) {
                 case Cell.Type.Mine:
                     Explode(cell);
                     break;
-
                 case Cell.Type.Empty:
-                    Flood(cell);
+                    StartSpreadingCells(cell);
                     CheckWinCondition();
                     break;
-
                 default:
                     cell.revealed = true;
-                    _state[cellPosition.x, cellPosition.y] = cell;
                     CheckWinCondition();
                     break;
             }
 
-            _board.Draw(_state);
+            UpdateCellStateAndRedraw(cell.position.x, cell.position.y, cell);
         }
 
-        private void Flood(Cell cell) {
-            // Recursive exit conditions
+        private void StartSpreadingCells(Cell cell) {
             if (cell.revealed) return;
-            if (cell.type == Cell.Type.Mine || cell.type == Cell.Type.Invalid) return;
-
-            // Reveal the cell
+            if (cell.type is Cell.Type.Mine or Cell.Type.Invalid) return;
             cell.revealed = true;
             _state[cell.position.x, cell.position.y] = cell;
-
-            // Keep flooding if the cell is empty, otherwise stop at numbers
+            // Keep spreading if the cell is empty, otherwise stop at numbers
             if (cell.type == Cell.Type.Empty) {
-                Flood(GetCell(cell.position.x - 1, cell.position.y));
-                Flood(GetCell(cell.position.x + 1, cell.position.y));
-                Flood(GetCell(cell.position.x, cell.position.y - 1));
-                Flood(GetCell(cell.position.x, cell.position.y + 1));
+                SpreadToNeighbourCells(cell);
             }
         }
 
+        private void SpreadToNeighbourCells(Cell cell) {
+            // Spread the reveal operation to the neighboring cells
+            StartSpreadingCells(GetCell(cell.position.x - 1, cell.position.y));
+            StartSpreadingCells(GetCell(cell.position.x + 1, cell.position.y));
+            StartSpreadingCells(GetCell(cell.position.x, cell.position.y - 1));
+            StartSpreadingCells(GetCell(cell.position.x, cell.position.y + 1));
+        }
+        
         private void Explode(Cell cell) {
-            Debug.Log("Game Over!");
-            _gameover = true;
-
-            // Set the mine as exploded
-            cell.exploded = true;
-            cell.revealed = true;
-            _state[cell.position.x, cell.position.y] = cell;
-
+            //Debug.Log("Game Over!");
+            _gameOver = true;
+            SetCellState(cell, true, true);
+    
             // Reveal all other mines
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    cell = _state[x, y];
-
-                    if (cell.type == Cell.Type.Mine) {
-                        cell.revealed = true;
-                        _state[x, y] = cell;
+                    var currentCell = _state[x, y];
+                    if (currentCell.type == Cell.Type.Mine) {
+                        SetCellState(currentCell, true);
                     }
                 }
             }
         }
 
-        private void CheckWinCondition() {
+        private void SetCellState(Cell cell, bool isRevealed, bool hasExploded = false) {
+            cell.exploded = hasExploded;
+            cell.revealed = isRevealed;
+            _state[cell.position.x, cell.position.y] = cell;
+        }
+
+        private bool AllNonMineCellsRevealed() {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = _state[x, y];
-
-                    // All non-mine cells must be revealed to have won
+                    var cell = _state[x, y];
                     if (cell.type != Cell.Type.Mine && !cell.revealed) {
-                        return; // no win
+                        return false;
                     }
                 }
             }
 
-            Debug.Log("Winner!");
-            _gameover = true;
+            return true;
+        }
+
+        private void CheckWinCondition() {
+            if (!AllNonMineCellsRevealed()) {
+                return; // no win
+            }
+
+            //Debug.Log("Winner!");
+            _gameOver = true;
 
             // Flag all the mines
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    Cell cell = _state[x, y];
-
+                    var cell = _state[x, y];
                     if (cell.type == Cell.Type.Mine) {
                         cell.flagged = true;
                         _state[x, y] = cell;
@@ -240,12 +247,7 @@ namespace MineSweeper.Scripts {
         }
 
         private Cell GetCell(int x, int y) {
-            if (IsValid(x, y)) {
-                return _state[x, y];
-            }
-            else {
-                return new Cell();
-            }
+            return IsValid(x, y) ? _state[x, y] : new Cell();
         }
 
         private bool IsValid(int x, int y) {

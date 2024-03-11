@@ -1,24 +1,29 @@
+using Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace FlappyBird.Scripts {
-    public class GameManager : MonoBehaviour {
+    public class FlappyBirdManager : MonoBehaviour {
+        
         [SerializeField] private GameObject gameOverMenu;
         [SerializeField] private Text scoreText;
         [SerializeField] private Text highScoreText;
         [SerializeField] private GameObject newHighScoreText;
         [SerializeField] private Button restartButton;
+        [SerializeField] private Button quitButton;
         private bool _hasPressedStart;
         private int _score;
 
 
         private void OnEnable() {
             restartButton.onClick.AddListener(OnClickRestart);
+            quitButton.onClick.AddListener(OnClickQuit);
         }
 
         private void OnDisable() {
             restartButton.onClick.RemoveListener(OnClickRestart);
+            quitButton.onClick.RemoveListener(OnClickQuit);
         }
 
         private void Start() {
@@ -46,8 +51,12 @@ namespace FlappyBird.Scripts {
             highScoreText.text = PlayerPrefs.GetInt("highScore").ToString();
         }
 
-        public void OnClickRestart() {
-            SceneManager.LoadScene(2);
+        private void OnClickRestart() {
+            SceneManager.LoadScene((int)Scenes.FlappyBird);
+        }
+
+        private void OnClickQuit() {
+            SceneManager.LoadScene((int)Scenes.MainMenu);
         }
 
 

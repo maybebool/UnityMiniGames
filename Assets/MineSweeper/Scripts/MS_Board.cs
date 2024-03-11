@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace MineSweeper.Scripts {
     public class MS_Board : MonoBehaviour {
-        public Tilemap Tilemap { get; private set; }
+        public Tilemap TileMap { get; private set; }
         public Tile tileUnknown;
         public Tile tileEmpty;
         public Tile tileMine;
@@ -20,7 +20,7 @@ namespace MineSweeper.Scripts {
 
 
         private void Awake() {
-            Tilemap = GetComponent<Tilemap>();
+            TileMap = GetComponent<Tilemap>();
         }
 
         public void Draw(Cell[,] state) {
@@ -29,7 +29,7 @@ namespace MineSweeper.Scripts {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     var cell = state[x, y];
-                    Tilemap.SetTile(cell.position, GetTile(cell));
+                    TileMap.SetTile(cell.position, GetTile(cell));
                 }
             }
         }
