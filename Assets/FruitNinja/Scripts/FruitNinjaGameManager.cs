@@ -42,10 +42,6 @@ namespace FruitNinja.Scripts {
             quitButton.onClick.RemoveListener(QuitGame);
         }
 
-        private void Update() {
-            Debug.Log(spawnedSceneObjects.Count);
-        }
-
         private void RestartGame() {
             SceneManager.LoadScene((int)Scenes.FruitNinja);
         }
