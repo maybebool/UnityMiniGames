@@ -704,6 +704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf441640552cc14a83e14787d8809bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1535426581}
+  restartButton: {fileID: 1298367158}
+  quitButton: {fileID: 114714064}
   scoreText: {fileID: 172613787}
   fadeImage: {fileID: 732314546}
 --- !u!4 &570689102
@@ -776,14 +779,14 @@ MonoBehaviour:
   - {fileID: 5352651303948502031, guid: 566b69132406c564e8d64b714d0015bc, type: 3}
   - {fileID: 5352651303948502031, guid: 31a5e59752be90346826a2afc4480e3d, type: 3}
   bombPrefab: {fileID: 6903049784304913417, guid: 525ec3ca5f155f9478dd113b793b5bfd, type: 3}
+  maxLifeTime: 5
   bombChance: 0.05
-  minSpawnDelay: 0.25
-  maxSpawnDelay: 1.25
   minAngle: -15
   maxAngle: 15
   minForce: 18
   maxForce: 22
-  maxLifeTime: 5
+  minSpawnDelay: 0.25
+  maxSpawnDelay: 1.25
 --- !u!4 &605574324
 Transform:
   m_ObjectHideFlags: 0

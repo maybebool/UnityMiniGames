@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Menu;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace FruitNinja.Scripts {
     public class FruitNinjaGameManager : MonoBehaviour {
 
-        public static List<GameObject> spawnedSceneObjects = new();
-        public TMP_Text scoreText;
-        public Image fadeImage;
+        public static readonly List<GameObject> spawnedSceneObjects = new();
+        [SerializeField] private GameObject gameOverPanel;
+        [SerializeField] private Button restartButton;
+        [SerializeField] private Button quitButton;
+        [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private Image fadeImage;
         
         private int _score;
         private Blade _blade;
@@ -24,6 +31,31 @@ namespace FruitNinja.Scripts {
             NewGame();
         }
 
+
+        private void OnEnable() {
+            restartButton.onClick.AddListener(RestartGame);
+            quitButton.onClick.AddListener(QuitGame);
+        }
+
+        private void OnDisable() {
+            restartButton.onClick.RemoveListener(RestartGame);
+            quitButton.onClick.RemoveListener(QuitGame);
+        }
+
+        private void Update() {
+            Debug.Log(spawnedSceneObjects.Count);
+        }
+
+        private void RestartGame() {
+            SceneManager.LoadScene((int)Scenes.FruitNinja);
+        }
+        
+        private void QuitGame() {
+            SceneManager.LoadScene((int)Scenes.MainMenu);
+        }
+        
+        
+
         private void NewGame() {
             
             Time.timeScale = 1f;
@@ -33,36 +65,6 @@ namespace FruitNinja.Scripts {
             _score = 0;
             scoreText.text = _score.ToString();
         }
-
-        // private void ClearScene() {
-        //     var fruits = FindObjectsOfType<Fruit>();
-        //
-        //     foreach (var fruit in fruits) {
-        //         Destroy(fruit.gameObject);
-        //     }
-        //     
-        //     var bombs = FindObjectsOfType<Bomb>();
-        //
-        //     foreach (var bomb in bombs) {
-        //         Destroy(bomb.gameObject);
-        //     }
-        // }
-        
-        
-        // private void ClearScene() 
-        // {
-        //     DestroyObjectsOfType<Fruit>();
-        //     DestroyObjectsOfType<Bomb>();
-        // }
-        //
-        // private void DestroyObjectsOfType<T>() where T: MonoBehaviour
-        // {
-        //     var objects = FindObjectsOfType<T>();
-        //     foreach (var obj in objects)
-        //     {
-        //         Destroy(obj.gameObject);
-        //     }
-        // }
         
         private void ClearScene() {
             foreach (var sceneObject in spawnedSceneObjects) {
@@ -79,32 +81,22 @@ namespace FruitNinja.Scripts {
         public void Explode() {
             _blade.enabled = false;
             _spawner.enabled = false;
-            StartCoroutine(ExplodeSequence());
+            StartCoroutine(ExplosionEffect());
+            gameOverPanel.SetActive(true);
         }
 
-        private IEnumerator ExplodeSequence() {
-            var elapsed = 0f;
-            var duration = 0.5f;
-
-            while (elapsed < duration) {
-
-                var t = Mathf.Clamp01(elapsed / duration);
-                fadeImage.color = Color.Lerp(Color.clear, Color.white, t);
-
-                Time.timeScale = 1f - t;
-                elapsed += Time.unscaledDeltaTime;
-                yield return null;
-            }
-
+        private IEnumerator ExplosionEffect() {
+            yield return LerpOverTime(Color.clear, Color.white, 0.5f);
             yield return new WaitForSecondsRealtime(1f);
             NewGame();
+            yield return LerpOverTime(Color.white, Color.clear, 0.5f);
+        }
 
-            elapsed = 0f;
-            
+        private IEnumerator LerpOverTime(Color startColor, Color endColor, float duration) {
+            var elapsed = 0f;
             while (elapsed < duration) {
-
                 var t = Mathf.Clamp01(elapsed / duration);
-                fadeImage.color = Color.Lerp(Color.white, Color.clear, t);
+                fadeImage.color = Color.Lerp(startColor, endColor, t);
 
                 Time.timeScale = 1f - t;
                 elapsed += Time.unscaledDeltaTime;
