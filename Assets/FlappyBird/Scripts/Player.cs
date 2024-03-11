@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace FlappyBird.Scripts {
@@ -9,7 +8,7 @@ namespace FlappyBird.Scripts {
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] sprites;
         [SerializeField] private GameObject manager;
-        private int spriteIndex;
+        private int _spriteIndex;
         private Vector3 _direction;
 
 
@@ -27,7 +26,7 @@ namespace FlappyBird.Scripts {
             }
 
             if (Input.touchCount > 0) {
-                Touch touch = Input.GetTouch(0);
+                var touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began) {
                     _direction = Vector3.up * strength;
                 }
@@ -38,20 +37,20 @@ namespace FlappyBird.Scripts {
         }
 
         private void AnimateSprite() {
-            spriteIndex++;
-            if (spriteIndex >= sprites.Length) {
-                spriteIndex = 0;
+            _spriteIndex++;
+            if (_spriteIndex >= sprites.Length) {
+                _spriteIndex = 0;
             }
 
-            spriteRenderer.sprite = sprites[spriteIndex];
+            spriteRenderer.sprite = sprites[_spriteIndex];
         }
 
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.CompareTag("Obsticle")) {
-                manager.GetComponent<GameManager>().GameOver();
+                manager.GetComponent<FlappyBirdManager>().GameOver();
             }
             else if (col.gameObject.CompareTag("Scoring")) {
-                manager.GetComponent<GameManager>().IncreaseScore();
+                manager.GetComponent<FlappyBirdManager>().IncreaseScore();
             }
         }
     }
