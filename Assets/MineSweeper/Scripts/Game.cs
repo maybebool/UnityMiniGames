@@ -11,14 +11,14 @@ namespace MineSweeper.Scripts {
         private MS_Board _board;
         private Cell[,] _state;
         private bool _gameOver;
-        private Camera mainCam;
+        private Camera _mainCam;
 
         private void OnValidate() {
             mineCount = Mathf.Clamp(mineCount, 0, width * height);
         }
 
         private void Awake() {
-            mainCam = Camera.main;
+            _mainCam = Camera.main;
             Application.targetFrameRate = 60;
 
             _board = GetComponentInChildren<MS_Board>();
@@ -36,7 +36,7 @@ namespace MineSweeper.Scripts {
             GenerateMines();
             GenerateNumbers();
 
-            Camera.main.transform.position = new Vector3(width / 2f, height / 2f, -10f);
+            _mainCam.transform.position = new Vector3(width / 2f, height / 2f, -10f);
             _board.Draw(_state);
         }
 
@@ -120,58 +120,56 @@ namespace MineSweeper.Scripts {
             }
             else if (!_gameOver) {
                 if (Input.GetMouseButtonDown(1)) {
-                    Flag();
+                    FlagCellAtMousePosition();
                 }
                 else if (Input.GetMouseButtonDown(0)) {
                     Reveal();
                 }
             }
         }
-
-        private void Flag() {
-            var worldPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        
+        private Cell GetCellAtMousePosition() {
+            var worldPosition = _mainCam.ScreenToWorldPoint(Input.mousePosition);
             var cellPosition = _board.TileMap.WorldToCell(worldPosition);
-            var cell = GetCell(cellPosition.x, cellPosition.y);
+            return GetCell(cellPosition.x, cellPosition.y);
+        }
 
-            // Cannot flag if already revealed
-            if (cell.type == Cell.Type.Invalid || cell.revealed) {
-                return;
-            }
-
-            cell.flagged = !cell.flagged;
-            _state[cellPosition.x, cellPosition.y] = cell;
+        private void UpdateCellStateAndRedraw(int x, int y, Cell cell) {
+            _state[x, y] = cell;
             _board.Draw(_state);
         }
 
+        private void FlagCellAtMousePosition() {
+            var cell = GetCellAtMousePosition();
+
+            // Cannot flag if already revealed
+            if (cell.type == Cell.Type.Invalid || cell.revealed) return;
+
+            cell.flagged = !cell.flagged;
+            UpdateCellStateAndRedraw(cell.position.x, cell.position.y, cell);
+        }
+
         private void Reveal() {
-            var worldPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            var cellPosition = _board.TileMap.WorldToCell(worldPosition);
-            var cell = GetCell(cellPosition.x, cellPosition.y);
-            
+            var cell = GetCellAtMousePosition();
 
             // Cannot reveal if already revealed or while flagged
-            if (cell.type == Cell.Type.Invalid || cell.revealed || cell.flagged) {
-                return;
-            }
+            if (cell.type == Cell.Type.Invalid || cell.revealed || cell.flagged) return;
 
             switch (cell.type) {
                 case Cell.Type.Mine:
                     Explode(cell);
                     break;
-
                 case Cell.Type.Empty:
                     StartSpreadingCells(cell);
                     CheckWinCondition();
                     break;
-
                 default:
                     cell.revealed = true;
-                    _state[cellPosition.x, cellPosition.y] = cell;
                     CheckWinCondition();
                     break;
             }
 
-            _board.Draw(_state);
+            UpdateCellStateAndRedraw(cell.position.x, cell.position.y, cell);
         }
 
         private void StartSpreadingCells(Cell cell) {
