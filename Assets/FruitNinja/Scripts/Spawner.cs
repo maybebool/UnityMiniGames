@@ -1,24 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace FruitNinja.Scripts {
     public class Spawner : MonoBehaviour {
-        [SerializeField] private GameObject[] FruitPrefabs;
+        [SerializeField] private GameObject[] fruitPrefabs;
         [SerializeField] private GameObject bombPrefab;
+        [SerializeField] private float maxLifeTime = 5f;
         [Range(0f, 1f)] [SerializeField] private float bombChance = 0.05f;
-        [SerializeField] private float minSpawnDelay = 0.25f;
-        [SerializeField] private float maxSpawnDelay = 1.25f;
         [SerializeField] private float minAngle = -15f;
         [SerializeField] private float maxAngle = 15f;
         [SerializeField] private float minForce = 18f;
         [SerializeField] private float maxForce = 22f;
-        [SerializeField] private float maxLifeTime = 5f;
+        [SerializeField] private float minSpawnDelay = 0.25f;
+        [SerializeField] private float maxSpawnDelay = 1.25f;
 
-        private Collider _spawnArea;
+        private Collider _spawnFieldCollider;
 
         private void Awake() {
-            _spawnArea = GetComponent<Collider>();
+            _spawnFieldCollider = GetComponent<Collider>();
         }
 
         private void OnEnable() {
@@ -46,7 +47,7 @@ namespace FruitNinja.Scripts {
         }
 
         private GameObject GetRandomPrefab() {
-            var prefab = FruitPrefabs[Random.Range(0, FruitPrefabs.Length)];
+            var prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
             if (Random.value < bombChance) {
                 prefab = bombPrefab;
             }
@@ -56,9 +57,9 @@ namespace FruitNinja.Scripts {
 
         private Vector3 GetRandomPositionWithinBounds() {
             var pos = new Vector3();
-            pos.x = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
-            pos.y = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
-            pos.z = Random.Range(_spawnArea.bounds.min.z, _spawnArea.bounds.max.z);
+            pos.x = Random.Range(_spawnFieldCollider.bounds.min.x, _spawnFieldCollider.bounds.max.x);
+            pos.y = Random.Range(_spawnFieldCollider.bounds.min.y, _spawnFieldCollider.bounds.max.y);
+            pos.z = Random.Range(_spawnFieldCollider.bounds.min.z, _spawnFieldCollider.bounds.max.z);
             return pos;
         }
 
