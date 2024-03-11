@@ -3,9 +3,9 @@ using UnityEngine;
 namespace FruitNinja.Scripts {
     public class Fruit : MonoBehaviour {
         
-        public GameObject whole;
-        public GameObject sliced;
-        public int points = 1;
+        [SerializeField] private GameObject whole;
+        [SerializeField] private GameObject sliced;
+        [SerializeField] private int points = 1;
         
         private Rigidbody _fruitRb;
         private Collider _fruitCollider;
