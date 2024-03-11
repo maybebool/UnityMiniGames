@@ -5,6 +5,7 @@ using UnityEngine.UI;
 namespace DoodleJump.Scripts {
     public class Player : MonoBehaviour {
 
+        public static bool isAlive;
         [SerializeField] private Camera camera;
         [SerializeField] private float normalBounceFactor;
         [SerializeField] private float specialPlatformBounceFactor;
@@ -12,7 +13,6 @@ namespace DoodleJump.Scripts {
         [SerializeField] private Text scoreText;
         [SerializeField] private float scrollSpeed;
         [SerializeField] private List<Transform> platforms = new();
-
         private float _score;
         private float _moveInput;
         private Rigidbody2D _rb;
@@ -23,6 +23,10 @@ namespace DoodleJump.Scripts {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
         
+        }
+
+        private void Start() {
+            isAlive = true;
         }
 
         private void Update() {
@@ -41,8 +45,7 @@ namespace DoodleJump.Scripts {
 
             scoreText.text = "Score: " + Mathf.Round(_score);
         }
-
-
+        
         private void FixedUpdate() {
             _rb.velocity = new Vector2(_moveInput * movementSpeed, _rb.velocity.y);
         }
@@ -72,6 +75,9 @@ namespace DoodleJump.Scripts {
                 if (other.CompareTag("SpringPlatform")) {
                     _rb.velocity = Vector2.zero;
                     _rb.velocity += (Vector2.up * specialPlatformBounceFactor);
+                }
+                if (other.CompareTag("Death")) {
+                    isAlive = false;
                 }
             }
         }
