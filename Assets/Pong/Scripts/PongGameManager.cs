@@ -46,6 +46,7 @@ namespace Pong.Scripts {
         }
 
         private void OnClickQuitButton() {
+            Time.timeScale = 1;
             SceneManager.LoadScene((int)Scenes.MainMenu);
         }
         
