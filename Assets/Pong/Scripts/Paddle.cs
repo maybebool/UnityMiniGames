@@ -2,17 +2,16 @@ using UnityEngine;
 
 namespace Pong.Scripts {
     public class Paddle : MonoBehaviour {
-        protected Rigidbody2D Rigidbody;
-        protected float speed = 10;
-
-
+        protected Rigidbody2D rb2d;
+        protected readonly float speed = 10;
+        
         private void Awake() {
-            Rigidbody = GetComponent<Rigidbody2D>();
+            rb2d = GetComponent<Rigidbody2D>();
         }
 
         public void ResetPosition() {
-            Rigidbody.position = new Vector2(Rigidbody.position.x, 0f);
-            Rigidbody.velocity = Vector2.zero;
+            rb2d.position = new Vector2(rb2d.position.x, 0f);
+            rb2d.velocity = Vector2.zero;
         }
     }
 }

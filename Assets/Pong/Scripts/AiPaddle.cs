@@ -8,18 +8,18 @@ namespace Pong.Scripts {
         private void FixedUpdate() {
             if (ball.velocity.x > 0 + threshold) {
                 if (ball.position.y > transform.position.y) {
-                    Rigidbody.AddForce(Vector2.up * speed);
+                    rb2d.AddForce(Vector2.up * speed);
                 }
                 else if (ball.position.y < transform.position.y) {
-                    Rigidbody.AddForce(Vector2.down * speed);
+                    rb2d.AddForce(Vector2.down * speed);
                 }
             }
             else {
                 if (transform.position.y > 0.0f) {
-                    Rigidbody.AddForce(Vector2.down * speed);
+                    rb2d.AddForce(Vector2.down * speed);
                 }
                 else if (transform.position.y < 0.0f) {
-                    Rigidbody.AddForce(Vector2.up * speed);
+                    rb2d.AddForce(Vector2.up * speed);
                 }
             }
         }

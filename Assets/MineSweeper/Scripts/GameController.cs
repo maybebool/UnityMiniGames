@@ -1,14 +1,25 @@
+using System;
+using Menu;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
 namespace MineSweeper.Scripts {
-    public class Game : MonoBehaviour {
-        public int width = 16;
-        public int height = 16;
-        public int mineCount = 32;
+    public class GameController : MonoBehaviour {
+        [SerializeField] private int width = 16;
+        [SerializeField] private int height = 16;
+        [SerializeField] private int mineCount = 32;
 
-        private MS_Board _board;
+        [SerializeField] private Button restartButton;
+        [SerializeField] private Button quitButton;
+        [SerializeField] private GameObject uiPanel;
+        [SerializeField] private TMP_Text wonText;
+        [SerializeField] private TMP_Text gameOverText;
+
+        private GridBoard _board;
         private Cell[,] _state;
         private bool _gameOver;
         private Camera _mainCam;
@@ -21,14 +32,35 @@ namespace MineSweeper.Scripts {
             _mainCam = Camera.main;
             Application.targetFrameRate = 60;
 
-            _board = GetComponentInChildren<MS_Board>();
+            _board = GetComponentInChildren<GridBoard>();
+        }
+
+        private void OnEnable() {
+            restartButton.onClick.AddListener(NewGame);
+            quitButton.onClick.AddListener(QuitGame);
+        }
+
+        private void OnDisable() {
+            restartButton.onClick.RemoveListener(NewGame);
+            quitButton.onClick.RemoveListener(QuitGame);
         }
 
         private void Start() {
             NewGame();
         }
 
+        private void Update() {
+            if (!_gameOver) {
+                if (Input.GetMouseButtonDown(1)) {
+                    FlagCellAtMousePosition();
+                }
+                else if (Input.GetMouseButtonDown(0)) {
+                    Reveal();
+                }
+            }
+        }
         private void NewGame() {
+            DisableUI();
             _state = new Cell[width, height];
             _gameOver = false;
 
@@ -38,6 +70,16 @@ namespace MineSweeper.Scripts {
 
             _mainCam.transform.position = new Vector3(width / 2f, height / 2f, -10f);
             _board.Draw(_state);
+        }
+
+        private void QuitGame() {
+            SceneManager.LoadScene((int)Scenes.MainMenu);
+        }
+
+        private void DisableUI() {
+            uiPanel.SetActive(false);
+            wonText.gameObject.SetActive(false);
+            gameOverText.gameObject.SetActive(false);
         }
 
         private void GenerateCells() {
@@ -113,20 +155,6 @@ namespace MineSweeper.Scripts {
 
             return count;
         }
-
-        private void Update() {
-            if (Input.GetKeyDown(KeyCode.R)) {
-                NewGame();
-            }
-            else if (!_gameOver) {
-                if (Input.GetMouseButtonDown(1)) {
-                    FlagCellAtMousePosition();
-                }
-                else if (Input.GetMouseButtonDown(0)) {
-                    Reveal();
-                }
-            }
-        }
         
         private Cell GetCellAtMousePosition() {
             var worldPosition = _mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -163,6 +191,7 @@ namespace MineSweeper.Scripts {
                     StartSpreadingCells(cell);
                     CheckWinCondition();
                     break;
+                
                 default:
                     cell.revealed = true;
                     CheckWinCondition();
@@ -194,6 +223,8 @@ namespace MineSweeper.Scripts {
         private void Explode(Cell cell) {
             //Debug.Log("Game Over!");
             _gameOver = true;
+            uiPanel.SetActive(true);
+            gameOverText.gameObject.SetActive(true);
             SetCellState(cell, true, true);
     
             // Reveal all other mines
@@ -233,6 +264,8 @@ namespace MineSweeper.Scripts {
 
             //Debug.Log("Winner!");
             _gameOver = true;
+            uiPanel.SetActive(true);
+            wonText.gameObject.SetActive(true);
 
             // Flag all the mines
             for (int x = 0; x < width; x++) {

@@ -18,7 +18,7 @@ namespace Pong.Scripts {
 
         private void FixedUpdate() {
             if (_direction.sqrMagnitude != 0) {
-                Rigidbody.AddForce(_direction * speed);
+                rb2d.AddForce(_direction * speed);
             }
         }
     }

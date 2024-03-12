@@ -44,17 +44,21 @@ namespace Snake.Scripts {
                 _direction = _input;
             }
 
+            // Get current position of last tail part
             var lastTailPartPosition = _tailParts[^1].position;
-            // reverse iteration
+            
+            // Move the position of each tail part to the position of the one in front of it (from tail to head)
             for (int i = _tailParts.Count - 1; i > 0; i--) {
                 _tailParts[i].position = _tailParts[i - 1].position;
             }
 
+            // If the last tail part has moved, make this position available for spawning food
             if (lastTailPartPosition != _tailParts[^1].position) {
                 food.AddFromPossibleFoodPositions(lastTailPartPosition);
             }
-            
+            // Move snake head in the direction
             transform.position += new Vector3(_direction.x, _direction.y, 0.0f);
+            // Remove the new head position from the possible food positions list
             food.RemoveFromPossibleFoodPositions(_tailParts[0].position);
         }
         

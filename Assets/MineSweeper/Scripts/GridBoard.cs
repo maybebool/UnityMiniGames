@@ -2,12 +2,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace MineSweeper.Scripts {
-    public class MS_Board : MonoBehaviour {
+    public class GridBoard : MonoBehaviour {
         public Tilemap TileMap { get; private set; }
         public Tile tileUnknown;
         public Tile tileEmpty;
         public Tile tileMine;
-        public Tile tileExploded;
         public Tile tileFlag;
         public Tile tileNum1;
         public Tile tileNum2;

@@ -1,15 +1,55 @@
+using Menu;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 namespace Pong.Scripts {
     public class PongGameManager : MonoBehaviour {
         
-        public Ball ball;
-        public Paddle playerPaddle;
-        public Paddle aiPaddle;
+        [SerializeField] private Ball ball;
+        [SerializeField] private Paddle playerPaddle;
+        [SerializeField] private Paddle aiPaddle;
 
-        public TMP_Text playerScoreText;
-        public TMP_Text aiScoreText;
+        [SerializeField] private TMP_Text playerScoreText;
+        [SerializeField] private TMP_Text aiScoreText;
+
+        [SerializeField] private GameObject uiPanel;
+        [SerializeField] private Button continueButton;
+        [SerializeField] private Button quitButton;
+
+        private void OnEnable() {
+            continueButton.onClick.AddListener(OnClickContinueButton);
+            quitButton.onClick.AddListener(OnClickQuitButton);
+        }
+
+        private void OnDisable() {
+            continueButton.onClick.RemoveListener(OnClickContinueButton);
+            quitButton.onClick.RemoveListener(OnClickQuitButton);
+        }
+
+        private void Update() {
+            if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            OpenPauseMenu();
+        }
+
+
+        private void OpenPauseMenu() {
+            uiPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
+        private void OnClickContinueButton() {
+            uiPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+
+        private void OnClickQuitButton() {
+            Time.timeScale = 1;
+            SceneManager.LoadScene((int)Scenes.MainMenu);
+        }
+        
 
         private int _playerScore;
         private int _aiScore;
