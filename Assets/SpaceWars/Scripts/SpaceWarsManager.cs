@@ -1,14 +1,16 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SpaceWars.Scripts {
-    public class SWGame_Manager : MonoBehaviour {
+    public class SpaceWarsManager : MonoBehaviour {
         
-        public static SWGame_Manager Instance;
+        public static SpaceWarsManager Instance;
         
         [SerializeField] private Button restartButton;
+        [SerializeField] private Button quitButton;
         [SerializeField] private TMP_Text pointsText;
         
         private int _points;
@@ -21,23 +23,29 @@ namespace SpaceWars.Scripts {
                 Instance = this;
             }
         }
-
-
+        
         public void CountPoint() {
             _points++;
             pointsText.text = _points.ToString();
         }
         private void OnEnable() {
-            restartButton.onClick.AddListener(Restart);
+            restartButton.onClick.AddListener(OnClickRestartButton);
+            quitButton.onClick.AddListener(OnClickQuitButton);
         }
 
         private void OnDisable() {
-            restartButton.onClick.RemoveListener(Restart);
+            restartButton.onClick.RemoveListener(OnClickRestartButton);
+            quitButton.onClick.RemoveListener(OnClickQuitButton);
         }
         
-        private void Restart() {
+        private void OnClickRestartButton() {
             SceneManager.LoadScene(11);
             Time.timeScale = 1;
+        }
+
+        private void OnClickQuitButton() {
+            Time.timeScale = 1;
+            SceneManager.LoadScene((int)Scenes.MainMenu);
         }
     }
 }

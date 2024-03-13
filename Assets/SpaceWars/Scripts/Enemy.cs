@@ -25,7 +25,7 @@ namespace SpaceWars.Scripts {
                 maxHealth -= damage;
             }
             else {
-                SWGame_Manager.Instance.CountPoint();
+                SpaceWarsManager.Instance.CountPoint();
                 Destroy(gameObject);
             }
         }

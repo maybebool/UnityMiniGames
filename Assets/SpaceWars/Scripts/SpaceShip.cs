@@ -55,7 +55,7 @@ namespace SpaceWars.Scripts {
             }
             else {
                 Destroy(gameObject);
-                GameOver();
+                Death();
             }
         }
         
@@ -67,7 +67,7 @@ namespace SpaceWars.Scripts {
             }
         }
 
-        private void GameOver() {
+        private void Death() {
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
