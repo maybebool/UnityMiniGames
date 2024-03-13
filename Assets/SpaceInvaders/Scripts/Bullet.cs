@@ -25,19 +25,19 @@ namespace SpaceInvaders.Scripts {
             if (IsPlayer) {
                 if (other.CompareTag("Enemy")) {
                     Destroy(other.gameObject);
-                    SIGameManager.Instance.PointCounter(1);
+                    SpaceInvadersManager.Instance.PointCounter(1);
                     EnemyGrid.Instance.CorrectingCurrentArmyCount(other.gameObject.GetComponent<RegularEnemy>());
                     Destroy(gameObject);
                 }
                 
                 if (other.CompareTag("SpecialUFO")) {
-                    SIGameManager.Instance.PointCounter(10);
+                    SpaceInvadersManager.Instance.PointCounter(10);
                     Destroy(gameObject);
                 }
             }
             else {
                 if (other.CompareTag("Player")) {
-                    SIGameManager.Instance.PlayerLifeSetter();
+                    SpaceInvadersManager.Instance.PlayerLifeSetter();
                     Destroy(gameObject);
                 }
             }

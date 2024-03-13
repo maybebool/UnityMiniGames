@@ -46,7 +46,7 @@ namespace SpaceInvaders.Scripts {
             }
 
             if (_currentArmyCount.Count <= 0) {
-                SIGameManager.Instance.GameOverScreen();
+                SpaceInvadersManager.Instance.UIPanelScreen();
             }
         }
 
