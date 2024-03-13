@@ -1,6 +1,4 @@
-﻿using System;
-using Menu;
-using Unity.VisualScripting;
+﻿using Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,13 +13,6 @@ namespace Snake.Scripts {
         private void Start() {
             Time.fixedDeltaTime = 0.08f;
         }
-
-        private void Update() {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                OnClickPauseGame();
-            }
-        }
-
         private void OnEnable() {
             continueButton.onClick.AddListener(OnClickContinueGame);
             quitButton.onClick.AddListener(OnClickQuitGame);
@@ -32,7 +23,12 @@ namespace Snake.Scripts {
             quitButton.onClick.RemoveListener(OnClickQuitGame);
         }
 
-
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                OnClickPauseGame();
+            }
+        }
+        
         public static void ResetGame() {
             SceneManager.LoadScene((int)Scenes.Snake);
         }
