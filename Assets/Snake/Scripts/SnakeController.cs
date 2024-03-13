@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Snake.Scripts {
-    public class Snake : MonoBehaviour {
+    public class SnakeController : MonoBehaviour {
         
         [SerializeField] private Transform tailPartsPrefab;
         [SerializeField] private Food food;
@@ -21,22 +22,31 @@ namespace Snake.Scripts {
         }
 
         private void Update() {
-            if (_direction.x != 0f) {
-                if (Input.GetKeyDown(KeyCode.W)) {
+            var pressedKey = DetectKeyPress();
+    
+            switch(pressedKey) {
+                case KeyCode.W when _direction.x != 0f :
                     _input = Vector2.up;
-                }
-                else if (Input.GetKeyDown(KeyCode.S)) {
+                    break;
+                case KeyCode.S when _direction.x != 0f:
                     _input = Vector2.down;
-                }
-                
-            } else if (_direction.y != 0f) {
-                if (Input.GetKeyDown(KeyCode.A)) {
+                    break;
+                case KeyCode.A when _direction.y != 0f:
                     _input = Vector2.left;
-                }
-                else if (Input.GetKeyDown(KeyCode.D)) {
+                    break;
+                case KeyCode.D when _direction.y != 0f:
                     _input = Vector2.right;
-                }
+                    break;
             }
+        }
+
+        private KeyCode DetectKeyPress() {
+            if(Input.GetKeyDown(KeyCode.W)) return KeyCode.W;
+            if(Input.GetKeyDown(KeyCode.S)) return KeyCode.S;
+            if(Input.GetKeyDown(KeyCode.A)) return KeyCode.A;
+            if(Input.GetKeyDown(KeyCode.D)) return KeyCode.D;
+    
+            return KeyCode.None;
         }
         
         private void FixedUpdate() {
@@ -44,7 +54,7 @@ namespace Snake.Scripts {
                 _direction = _input;
             }
 
-            // Get current position of last tail part
+            // Get current position of last tail part  ^1 = last index position
             var lastTailPartPosition = _tailParts[^1].position;
             
             // Move the position of each tail part to the position of the one in front of it (from tail to head)
@@ -64,7 +74,7 @@ namespace Snake.Scripts {
         
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Boundries")) {
-                ResetGame();
+                SnakeManager.ResetGame();
                 transform.position = Vector3.right;
             }else if (other.CompareTag("Food")) {
                 GrowSnakeTail();
@@ -72,9 +82,7 @@ namespace Snake.Scripts {
             }
         }
 
-        private void ResetGame() {
-            SceneManager.LoadScene(11);
-        }
+        
 
         private void GrowSnakeTail() {
             var tailPart = Instantiate(tailPartsPrefab);
