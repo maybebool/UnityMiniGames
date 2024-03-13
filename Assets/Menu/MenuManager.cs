@@ -36,7 +36,6 @@ namespace Menu {
             spaceWarsButton.onClick.AddListener(() => LoadScene(Scenes.SpaceWars));
             tetrisButton.onClick.AddListener(() => LoadScene(Scenes.Tetris));
             ticTacToeButton.onClick.AddListener(() => LoadScene(Scenes.TicTacToe));
-            wimmelbildButton.onClick.AddListener(() => LoadScene(Scenes.Wimmelbild));
         }
 
         private void OnDisable() {
@@ -53,7 +52,6 @@ namespace Menu {
             spaceWarsButton.onClick.RemoveListener(() => LoadScene(Scenes.SpaceWars));
             tetrisButton.onClick.RemoveListener(() => LoadScene(Scenes.Tetris));
             ticTacToeButton.onClick.RemoveListener(() => LoadScene(Scenes.TicTacToe));
-            wimmelbildButton.onClick.RemoveListener(() => LoadScene(Scenes.Wimmelbild));
         }
 
 
@@ -100,9 +98,6 @@ namespace Menu {
                     break;
                 case Scenes.TicTacToe:
                     SceneManager.LoadScene((int)Scenes.TicTacToe);
-                    break;
-                case Scenes.Wimmelbild:
-                    SceneManager.LoadScene((int)Scenes.Wimmelbild);
                     break;
                 default:
                     Debug.LogError("Invalid scene index");

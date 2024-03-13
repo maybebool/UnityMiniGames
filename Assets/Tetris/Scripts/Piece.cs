@@ -1,13 +1,12 @@
 using UnityEngine;
 namespace Tetris.Scripts {
     public class Piece : MonoBehaviour {
-        public Board Board { get; private set; }
+        private Board Board { get; set; }
         public TetrominoData Data { get; private set; }
-
         public Vector3Int[] Cells { get; private set; }
         public Vector3Int Position { get; private set; }
 
-        public int RotationIndex { get; private set; }
+        private int RotationIndex { get; set; }
 
         public float stepDelay = 1f;
         public float lockDelay = .5f;
@@ -17,62 +16,63 @@ namespace Tetris.Scripts {
 
         private void Update() {
             Board.Clear(this);
-
             _lockTime += Time.deltaTime;
-
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                Rotate(-1);
-            }
-            else if (Input.GetKeyDown(KeyCode.E)) {
-                Rotate(1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.A)) {
-                Move(Vector2Int.left);
-            }
-            else if (Input.GetKeyDown(KeyCode.D)) {
-                Move(Vector2Int.right);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S)) {
-                Move(Vector2Int.down);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                HardDrop();
-            }
-
+            
+            CheckUserInput();
             if (Time.time >= _stepTime) {
                 Step();
             }
-
             Board.Set(this);
+        }
+
+        private void CheckUserInput() {
+            if (!Input.anyKeyDown) return;
+            var pressedKey = Input.inputString[0];
+            switch (pressedKey) {
+                case 'q':
+                    Rotate(-1);
+                    break;
+                case 'e':
+                    Rotate(1);
+                    break;
+                case 'a':
+                    MovePieces(Vector2Int.left);
+                    break;
+                case 'd':
+                    MovePieces(Vector2Int.right);
+                    break;
+                case 's':
+                    MovePieces(Vector2Int.down);
+                    break;
+                case ' ':
+                    LetPieceFall();
+                    break;
+            }
         }
 
         private void Step() {
             _stepTime = Time.time + stepDelay;
-            Move(Vector2Int.down);
+            MovePieces(Vector2Int.down);
             if (_lockTime >= lockDelay) {
-                Lock();
+                LockPieceInPosition();
             }
         }
 
-        private void Lock() {
+        private void LockPieceInPosition() {
             Board.Set(this);
             Board.ClearLine();
             Board.SpawnPiece();
         }
 
 
-        private void HardDrop() {
-            while (Move(Vector2Int.down)) {
-                continue;
+        private void LetPieceFall() {
+            while (MovePieces(Vector2Int.down)) {
             }
-            Lock();
+            LockPieceInPosition();
         }
 
-        private bool Move(Vector2Int translation) {
-            var newPos = this.Position;
+        private bool MovePieces(Vector2Int translation) {
+            var newPos = Position;
             newPos.x += translation.x;
             newPos.y += translation.y;
 
@@ -94,9 +94,8 @@ namespace Tetris.Scripts {
             _stepTime = Time.time + stepDelay;
             _lockTime = 0f;
 
-            if (Cells == null) {
-                Cells = new Vector3Int[data.Cells.Length];
-            }
+            // if Cells Array is empty it fills Cells with data
+            Cells ??= new Vector3Int[data.Cells.Length];
 
             for (int i = 0; i < data.Cells.Length; i++) {
                 Cells[i] = (Vector3Int)data.Cells[i];
@@ -109,10 +108,9 @@ namespace Tetris.Scripts {
             ApplyRotationMatrix(direction);
 
 
-            if (!TestWallKicks(RotationIndex, direction)) {
-                RotationIndex = originalRotation;
-                ApplyRotationMatrix(-direction);
-            }
+            if (CheckForWallContact(RotationIndex)) return;
+            RotationIndex = originalRotation;
+            ApplyRotationMatrix(-direction);
         }
 
         private void ApplyRotationMatrix(int direction) {
@@ -145,17 +143,16 @@ namespace Tetris.Scripts {
             if (input < min) {
                 return max - (min - input) % (max - min);
             }
-            else {
-                return min + (input - min) % (max - min);
-            }
+
+            return min + (input - min) % (max - min);
         }
 
-        private bool TestWallKicks(int rotationIndex, int rotDir) {
-            int wallKickIndex = GetWallKickIndex(rotationIndex, rotDir);
+        private bool CheckForWallContact(int rotationIndex) {
+            var wallKickIndex = GetWallContactIndex(rotationIndex);
             for (int i = 0; i < Data.wallKicks.GetLength(1); i++) {
                 var translation = Data.wallKicks[wallKickIndex, i];
 
-                if (Move(translation)) {
+                if (MovePieces(translation)) {
                     return true;
                 }
             }
@@ -163,14 +160,14 @@ namespace Tetris.Scripts {
             return false;
         }
 
-        private int GetWallKickIndex(int rotationIndex, int rotDir) {
-            int wallKickIndex = rotationIndex * 2;
+        private int GetWallContactIndex(int rotationIndex) {
+            var wallContactsIndex = rotationIndex * 2;
 
             if (rotationIndex < 0) {
-                wallKickIndex--;
+                wallContactsIndex--;
             }
 
-            return Wrap(wallKickIndex, 0, Data.wallKicks.GetLength(0));
+            return Wrap(wallContactsIndex, 0, Data.wallKicks.GetLength(0));
         }
     }
 }
