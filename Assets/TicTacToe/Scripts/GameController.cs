@@ -1,3 +1,4 @@
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -118,12 +119,6 @@ namespace TicTacToe.Scripts {
             for (int i = 0; i < buttons.Length; i++) {
                 buttons[i].interactable = false;
             }
-        }
-
-        public void RestartTheGame() {
-            SceneManager.LoadScene("TicTacToe");
-            turnIcons[0].SetActive(true);
-            turnIcons[1].SetActive(false);
         }
     }
 }

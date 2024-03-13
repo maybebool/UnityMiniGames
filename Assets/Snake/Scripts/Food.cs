@@ -7,7 +7,7 @@ namespace Snake.Scripts {
 
         public BoxCollider2D area;
         
-        [SerializeField] private Snake snake;
+        [SerializeField] private SnakeController snake;
         private List<Vector3> _possibleFoodPositions = new();
         
         private void Start() {

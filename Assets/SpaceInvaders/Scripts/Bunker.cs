@@ -7,7 +7,7 @@ namespace SpaceInvaders.Scripts {
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Enemy")) {
-                SIGameManager.Instance.GameOverScreen();
+                SpaceInvadersManager.Instance.UIPanelScreen();
             }
 
             if (!other.CompareTag("Bullet")) return;

@@ -22,7 +22,7 @@ namespace Tetris.Scripts {
 
         public void Initialize() {
             Cells = Data.Cells[Tetromino];
-            wallKicks = Data.WallKicks[Tetromino];
+            wallKicks = Data.TetrominoWallContact[Tetromino];
         }
     }
 }

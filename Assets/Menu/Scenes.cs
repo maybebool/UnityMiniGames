@@ -13,7 +13,6 @@
         SpaceInvaders = 10,
         SpaceWars = 11,
         Tetris = 12,
-        TicTacToe = 13,
-        Wimmelbild = 14
+        TicTacToe = 13
     }
 }
