@@ -52,6 +52,7 @@ namespace BubbleShooter.Scripts {
         public void SetCanShoot(bool canShoot) {
             _canShoot = canShoot;
             if (ammoCount < 1) {
+                BubbleShooterManager.gameOver = true;
                 BubbleShooterManager.Instance.GameOver();
             }
         }

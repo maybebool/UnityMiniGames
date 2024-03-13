@@ -7,11 +7,13 @@ namespace BubbleShooter.Scripts {
     public class BubbleShooterManager : MonoBehaviour {
         
         public static BubbleShooterManager Instance;
+        
         [SerializeField] private TMP_Text ammoAmountText;
         [SerializeField] private TMP_Text bubblePointsText;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject wonPanel;
         private int _bubblePoints;
+        public static bool gameOver;
 
         
         private void Awake() {
@@ -27,12 +29,18 @@ namespace BubbleShooter.Scripts {
             Time.timeScale = 1;
             gameOverPanel.SetActive(false);
             wonPanel.SetActive(false);
+            gameOver = false;
+
         }
 
         private void Update() {
-            if (BubbleList.bubbleList.Count >= 1) return;
-            WonGame();
-            BubbleList.bubbleList.Clear();
+            Debug.Log(BubbleList.bubbleList.Count);
+            if (BubbleList.bubbleList.Count <= 0 && !gameOver) {
+                gameOver = false;
+                WonGame();
+                Debug.Log("Shit");
+            }
+            
         }
 
 
@@ -46,12 +54,15 @@ namespace BubbleShooter.Scripts {
         }
 
         public void GameOver() {
-            gameOverPanel.SetActive(true);
+            if (gameOver) {
+                gameOverPanel.SetActive(true);
+                BubbleList.bubbleList.Clear();
+            }
         }
 
         private void WonGame() {
             wonPanel.SetActive(true);
-            Time.timeScale = 0;
+            BubbleList.bubbleList.Clear();
         }
 
         public void OnRestartClick() {
