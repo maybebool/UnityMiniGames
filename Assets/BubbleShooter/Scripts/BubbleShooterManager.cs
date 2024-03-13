@@ -34,13 +34,8 @@ namespace BubbleShooter.Scripts {
         }
 
         private void Update() {
-            Debug.Log(BubbleList.bubbleList.Count);
-            if (BubbleList.bubbleList.Count <= 0 && !gameOver) {
-                gameOver = false;
-                WonGame();
-                Debug.Log("Shit");
-            }
-            
+            if (BubbleList.bubbleList.Count > 0 || gameOver) return;
+            WonGame();
         }
 
 
