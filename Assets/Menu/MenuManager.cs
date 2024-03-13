@@ -19,7 +19,6 @@ namespace Menu {
         [SerializeField] private Button spaceWarsButton;
         [SerializeField] private Button tetrisButton;
         [SerializeField] private Button ticTacToeButton;
-        [SerializeField] private Button wimmelbildButton;
 
 
         private void OnEnable() {
