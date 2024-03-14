@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/DoodleJumpMenu.unity
-    guid: 3d8cdda311c383542a953a31f27c5c17
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1b7f219a0f29f0b4aaa6daffbd9483df
   - enabled: 1
     path: Assets/Scenes/Asteroids.unity
     guid: 93784748b227c74428a1a1aa66afe0ca
@@ -26,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FruitNinja.unity
     guid: 72877ed0635f21c49bbe4992ec2c673f
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 1b7f219a0f29f0b4aaa6daffbd9483df
   - enabled: 1
     path: Assets/Scenes/MineSweeper.unity
     guid: 24d78ffc3b98444438248a344299e7e0
@@ -50,7 +47,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TicTacToe.unity
     guid: 205cb3c2620df7744abc1f43c458452a
-  - enabled: 1
-    path: Assets/Scenes/Wimmelbild.unity
-    guid: 2b2e847f8f4cdfa44a7f7479786ae514
   m_configObjects: {}

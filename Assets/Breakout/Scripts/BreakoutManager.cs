@@ -2,6 +2,7 @@ using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Breakout.Scripts {
     public class BreakoutManager : MonoBehaviour {
@@ -10,8 +11,20 @@ namespace Breakout.Scripts {
         [SerializeField] private int counter = 3;
         [SerializeField] private TMP_Text lifePointsText;
         [SerializeField] private TMP_Text pointCounter;
-        [SerializeField] private Canvas gameOver;
-        
+        [SerializeField] private GameObject uiPanel;
+        [SerializeField] private Button restartButton;
+        [SerializeField] private Button quitButton;
+
+        private void OnEnable() {
+            restartButton.onClick.AddListener(Restart);
+            quitButton.onClick.AddListener(Quit);
+        }
+
+        private void OnDisable() {
+            restartButton.onClick.RemoveListener(Restart);
+            quitButton.onClick.AddListener(Quit);
+        }
+
         public void Counter() {
             counter += 100;
             pointCounter.text = counter.ToString();
@@ -32,14 +45,19 @@ namespace Breakout.Scripts {
             lifePointsText.text = lifePoints.ToString();
         }
         
-        public void Restart() {
+        private void Restart() {
             SceneManager.LoadScene((int)Scenes.Breakout);
             Time.timeScale = 1;
         }
 
+        private void Quit() {
+            Time.timeScale = 1;
+            SceneManager.LoadScene((int)Scenes.MainMenu);
+        }
+
         private void GameOver() {
             Time.timeScale = 0;
-            gameOver.gameObject.SetActive(true);
+            uiPanel.gameObject.SetActive(true);
         }
 
     }
