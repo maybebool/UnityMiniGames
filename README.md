@@ -38,5 +38,17 @@ How to play:
 **TicTacToe**
 - Click = left mouse key
 
-**
+**Pong**
+- Movement = w,s
+
+**Snake**
+- Movement = w,a,s,d
+
+**Space Invaders**
+- Movement = a,d
+- Shoot = space bar
+
+**Space Wars**
+- Movement = w,s
+- Shoot = left mouse key
 
