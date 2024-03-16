@@ -8,8 +8,35 @@ Each game has either a Pause Menu, accessible via esc, or a Game Over/Won Panel 
 How to play: 
 
 **Astroids**
-- Shoot = Space bar
+- Shoot = space bar
 - Movement = w,a,s,d
 
 **Breakout**
 - Movement = left and right arrows
+
+**BubbleShooter**
+- Shoot = left mouse key
+
+**Doodle Jump**
+- Movement = a for left, d for right
+
+**Flappy Bird**
+- Jump = space bar
+
+**Fruit Ninja**
+- Movement = mouse
+- Slice = hold left mouse key
+
+**Mine Sweeper**
+- Click = left mouse key
+
+**Tetris**
+- Move pieces on x-axis = a, d
+- Rotate pieces clockwise = q
+- Rotate pieces counter-clockwise = e
+
+**TicTacToe**
+- Click = left mouse key
+
+**
+
