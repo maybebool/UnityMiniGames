@@ -28,7 +28,7 @@ Each game has a Pause Menu, accessible via esc, or a Game Over/Won Panel that ap
 **Doodle Jump**
 - Movement = a for left, d for right
 
-<img src="https://github.com/maybebool/UnityMiniGames/blob/main/Recordings/Image%20Sequence_007_0005.jpg" alt="Beispielbild" height="300">
+<img src="https://github.com/maybebool/UnityMiniGames/blob/main/Recordings/Image%20Sequence_007_0005.jpg" alt="Beispielbild" height="500">
 
 **Flappy Bird**
 - Jump = space bar
