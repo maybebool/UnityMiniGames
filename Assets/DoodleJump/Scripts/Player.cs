@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace DoodleJump.Scripts {
     public class Player : MonoBehaviour {
 
         public static bool isAlive;
-        [SerializeField] private Camera camera;
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private float normalBounceFactor;
         [SerializeField] private float specialPlatformBounceFactor;
         [SerializeField] private float movementSpeed;
