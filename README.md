@@ -1,6 +1,6 @@
 # Mini games in Unity
 
-![Beispielbild](Recordings/Image Sequence_001_0005.jpg)
+![Beispielbild](https://github.com/maybebool/UnityMiniGames/blob/main/Recordings/Image%20Sequence_001_0005.jpg)
 
 Hey there. This Repo will show you 13 well-known mini-games I've programmed.
 Some of them are visually still rustic as my main goal was to implement the core mechanic of each game.
