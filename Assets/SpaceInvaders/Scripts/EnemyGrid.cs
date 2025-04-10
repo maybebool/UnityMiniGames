@@ -15,7 +15,6 @@ namespace SpaceInvaders.Scripts {
         private List<RegularEnemy> _currentArmyCount = new();
         private Vector3 _direction = Vector3.right;
         private Camera _camera;
-        private float _enemyBulletSpawnRate = 2f;
 
         private void Awake() {
             _camera = Camera.main;
@@ -89,6 +88,5 @@ namespace SpaceInvaders.Scripts {
                 }
             }
         }
-
     }
 }

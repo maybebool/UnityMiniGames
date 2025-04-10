@@ -2418,7 +2418,6 @@ MonoBehaviour:
   spaceWarsButton: {fileID: 234160233}
   tetrisButton: {fileID: 2142503013}
   ticTacToeButton: {fileID: 935862093}
-  wimmelbildButton: {fileID: 0}
 --- !u!1 &1306536215
 GameObject:
   m_ObjectHideFlags: 0
