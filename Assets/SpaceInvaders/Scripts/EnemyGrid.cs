@@ -88,6 +88,5 @@ namespace SpaceInvaders.Scripts {
                 }
             }
         }
-
     }
 }
