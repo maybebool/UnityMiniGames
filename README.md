@@ -2,10 +2,10 @@
 
 ![Mini Games](https://github.com/maybebool/UnityMiniGames/blob/main/Recordings/Image%20Sequence_001_0005.jpg)
 
-Hey there. This Repo will show you 13 well-known mini-games I've programmed.
-Some of them are visually still rustic as my main goal was to implement the core mechanic of each game.
+Hey there. This Repository will showcase 13 well-known mini-games that I've programmed in Unity.
+Some of them are still visually rustic, as my main goal was to implement the core mechanics of each game.
 
-Each game has a Pause Menu, accessible via esc, or a Game Over/Won Panel that appears after the game ends.
+Each game has a Pause Menu, accessible via Esc, or a Game Over/Won Panel that appears after the game ends.
 
 ## How to play: 
 
