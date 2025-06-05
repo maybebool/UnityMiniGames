@@ -23,16 +23,17 @@ namespace SpaceWars.Scripts {
         }
 
         private IEnumerator EnemySpawner() {
-            
-            Instantiate(enemies[Random.Range(0, enemies.Length)], CalculateRandomSpawnPos(), Quaternion.identity);
-            yield return new WaitForSeconds(enemyInterval);
-            StartCoroutine(EnemySpawner());
+            while (true) {
+                Instantiate(enemies[Random.Range(0, enemies.Length)], CalculateRandomSpawnPos(), Quaternion.identity);
+                yield return new WaitForSeconds(enemyInterval);
+            }
         }
 
         private IEnumerator GunUpgradeSpawner() {
-            Instantiate(gunUpgradePrefab, CalculateRandomSpawnPos(), Quaternion.identity);
-            yield return new WaitForSeconds(gunUpgradeInterval);
-            StartCoroutine(GunUpgradeSpawner());
+            while (true) {
+                Instantiate(gunUpgradePrefab, CalculateRandomSpawnPos(), Quaternion.identity);
+                yield return new WaitForSeconds(gunUpgradeInterval);
+            }
         }
     }
 }
