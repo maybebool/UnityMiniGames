@@ -5,6 +5,18 @@
 Hey there. This Repository will showcase 13 well-known mini-games that I've programmed in Unity.
 Some of them are still visually rustic, as my main goal was to implement the core mechanics of each game.
 
+It is meant as an exercise for game developers (beginners). Try to rebuild these games from scratch in Unity and use this repo as a reference when you get stuck.
+
+It will teach you:
+- basic game algorithms
+- data structures
+- Coroutines
+- basic game math
+- Canvas & Prefabs
+- MonoBehaviour methods
+
+
+
 Each game has a Pause Menu, accessible via Esc, or a Game Over/Won Panel that appears after the game ends.
 
 ## How to play: 
