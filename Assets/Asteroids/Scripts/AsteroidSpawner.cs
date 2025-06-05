@@ -7,8 +7,7 @@ namespace Asteroids.Scripts {
         [SerializeField] private GameObject asteroidPrefab;
         [SerializeField] private float spawnPosXMax, spawnPosYMax;
         private readonly float _spawnInterval = 4f;
-
-
+        
         private void Start() {
             StartCoroutine(AsteroidSpawning());
         }

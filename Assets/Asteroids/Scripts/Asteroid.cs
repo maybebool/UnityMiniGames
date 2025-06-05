@@ -14,7 +14,7 @@ namespace Asteroids.Scripts {
         private bool _spawnProtection = true;
 
 
-        public void AsteroidSetup(bool IsInitialSize) {
+        public void AsteroidSetup(bool isInitialSize) {
             srAsteroid.sprite = sprites[Random.Range(0, sprites.Length)];
             var ankerPoint = new Vector2(Random.Range(-camFieldXMax, camFieldXMax),
                 Random.Range(-camFieldYMax, camFieldYMax));
@@ -24,12 +24,7 @@ namespace Asteroids.Scripts {
 
             var scale = 0f;
 
-            if (IsInitialSize) {
-                scale = Random.Range(minSize, maxSize);
-            }
-            else {
-                scale = Random.Range(minSize, smallAsteroidMaxsize);
-            }
+            scale = Random.Range(minSize, isInitialSize ? maxSize : smallAsteroidMaxsize);
 
             transform.localScale = new Vector2(scale, scale);
         }

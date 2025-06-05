@@ -25,8 +25,7 @@ namespace DoodleJump.Scripts {
                 gameOverPanel.SetActive(true);
             }
         }
-
-
+        
         private void RestartGame() {
             SceneManager.LoadScene((int)Scenes.DoodleJump);
         }

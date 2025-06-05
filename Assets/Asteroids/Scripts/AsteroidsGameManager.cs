@@ -1,4 +1,3 @@
-using System;
 using Menu;
 using TMPro;
 using UnityEngine;
