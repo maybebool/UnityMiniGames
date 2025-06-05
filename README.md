@@ -5,7 +5,7 @@
 Hey there. This Repository will showcase 13 well-known mini-games that I've programmed in Unity.
 Some of them are still visually rustic, as my main goal was to implement the core mechanics of each game.
 
-It is meant as an exercise for game developers (beginners). Try to rebuild these games from scratch in Unity and use this repo as a reference when you get stuck.
+It is meant as an exercise for game developer students (beginner/entry level), as such games are often seen in exams. Try to rebuild these games from scratch in Unity and use this repo as a reference when you get stuck.
 
 It will teach you:
 - basic game algorithms
